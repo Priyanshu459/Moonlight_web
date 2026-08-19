@@ -1,0 +1,308 @@
+@import "tailwindcss";
+
+/* =============================================
+   MOONLIGHT AI — GLOBAL CSS
+   Dark-first, premium technology brand.
+   Accent: Moonlight Blue-Violet
+============================================= */
+
+:root {
+  /* Core colors */
+  --bg-base:      #0A0B0E;
+  --bg-surface:   #111318;
+  --bg-surface2:  #181C24;
+  --bg-border:    rgba(255,255,255,0.07);
+  --bg-border2:   rgba(255,255,255,0.04);
+
+  /* Text */
+  --text-primary:   #F2F3F7;
+  --text-secondary: #9BA3B8;
+  --text-tertiary:  #5C6480;
+
+  /* Accent — Moonlight Blue-Violet */
+  --accent:         #5B7CF9;
+  --accent-glow:    rgba(91,124,249,0.15);
+  --accent-muted:   rgba(91,124,249,0.08);
+  --accent-hover:   #7090FF;
+  --accent-dark:    #3A5CE4;
+
+  /* Semantic */
+  --success: #34C97A;
+  --warning: #F0A429;
+  --error:   #F25454;
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* Selection */
+::selection {
+  background: rgba(91, 124, 249, 0.25);
+  color: #fff;
+}
+
+/* Focus */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-surface); }
+::-webkit-scrollbar-thumb { background: var(--bg-surface2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #333; }
+
+/* =============================================
+   UTILITY CLASSES
+============================================= */
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #7090FF 0%, #A78BFA 60%, #C084FC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Moonlight glow card */
+.card-glow {
+  background: var(--bg-surface);
+  border: 1px solid var(--bg-border);
+  border-radius: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.card-glow:hover {
+  border-color: rgba(91, 124, 249, 0.3);
+  box-shadow: 0 0 0 1px rgba(91, 124, 249, 0.1), 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Glass surface */
+.glass {
+  background: rgba(17, 19, 24, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--bg-border);
+}
+
+/* Section spacing */
+.section {
+  padding: 96px 0;
+}
+
+.section-sm {
+  padding: 64px 0;
+}
+
+/* Container */
+.container-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Noise texture overlay */
+.noise::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.04;
+}
+
+/* =============================================
+   ANIMATIONS
+============================================= */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px var(--accent-glow); }
+  50% { box-shadow: 0 0 40px var(--accent-glow), 0 0 80px var(--accent-glow); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+}
+
+/* Animation utilities */
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-slide-up { animation: slide-up 0.6s ease-out forwards; }
+.animate-fade-in  { animation: fade-in 0.5s ease-out forwards; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =============================================
+   TYPOGRAPHY SCALE
+============================================= */
+
+.text-display-xl {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.text-display-lg {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.text-display-md {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* =============================================
+   HERO GRADIENT BACKGROUND
+============================================= */
+
+.hero-gradient {
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(91,124,249,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(167,139,250,0.06) 0%, transparent 50%),
+    var(--bg-base);
+}
+
+.hero-grid {
+  background-image: 
+    linear-gradient(rgba(91,124,249,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91,124,249,0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 100%);
+}
+
+/* =============================================
+   LEGAL PAGES
+============================================= */
+
+.legal-content {
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.legal-content h2 {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--bg-border);
+}
+
+.legal-content h2:first-child {
+  border-top: none;
+  margin-top: 0;
+}
+
+.legal-content p {
+  margin-bottom: 1rem;
+}
+
+.legal-content ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.legal-content ul li {
+  margin-bottom: 0.4rem;
+}
+
+.legal-content a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.legal-content strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* =============================================
+   MOBILE MENU
+============================================= */
+
+.mobile-menu-enter {
+  animation: slide-up 0.2s ease-out forwards;
+}
+
+/* =============================================
+   CODE BLOCKS
+============================================= */
+
+.code-block {
+  background: var(--bg-surface2);
+  border: 1px solid var(--bg-border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  overflow-x: auto;
+}
+
+/* =============================================
+   RESPONSIVE
+============================================= */
+
+@media (max-width: 768px) {
+  .section { padding: 64px 0; }
+  .section-sm { padding: 40px 0; }
+  .container-page { padding: 0 16px; }
+}
