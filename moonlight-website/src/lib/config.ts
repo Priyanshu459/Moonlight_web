@@ -11,8 +11,7 @@ export const siteConfig = {
   shortDescription: "Private. Local. On-device AI.",
 
   // --- URLs ---
-  // TODO: Replace with actual production domain before launch
-  url: "https://moonlightai.app",
+  url: "https://moonlight-ai.app",
   
   // --- Google Play ---
   // TODO: Replace with actual Play Store URL when published
@@ -20,9 +19,8 @@ export const siteConfig = {
   playStoreComingSoon: true,
 
   // --- Contact ---
-  // TODO: Set up actual support email
-  supportEmail: "support@moonlightai.app",
-  privacyEmail: "privacy@moonlightai.app",
+  supportEmail: "support@moonlight-ai.app",
+  privacyEmail: "privacy@moonlight-ai.app",
 
   // --- Social ---
   // TODO: Add actual social links when available
