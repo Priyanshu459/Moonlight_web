@@ -49,6 +49,7 @@ export function ScrollScene() {
   const uiOpacityPrompt = useTransform(scrollYProgress, [0.5, 0.55], [0, 1]);
   const uiOpacityStream = useTransform(scrollYProgress, [0.75, 0.8], [0, 1]);
   const uiOpacityResponse = useTransform(scrollYProgress, [0.9, 0.95], [0, 1]);
+  const uiOpacityStreamFade = useTransform(scrollYProgress, [0.9, 0.95], [1, 0]);
 
   if (prefersReducedMotion) {
     return (
@@ -185,7 +186,7 @@ export function ScrollScene() {
                       >
                         Privacy by Architecture: Chats stay on your device. It never touches a network.
                       </motion.div>
-                      <motion.div className="flex items-center gap-1 px-2 mt-1" style={{ opacity: useTransform(scrollYProgress, [0.9, 0.95], [1, 0]) }}>
+                      <motion.div className="flex items-center gap-1 px-2 mt-1" style={{ opacity: uiOpacityStreamFade }}>
                         <div className="w-1 h-3 rounded-sm bg-indigo-400/50 animate-pulse" />
                       </motion.div>
                     </div>
