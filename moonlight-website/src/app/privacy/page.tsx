@@ -78,7 +78,7 @@ export default function PrivacyPage() {
 
           <h2>4. AI Model Processing</h2>
           <p>
-            AI inference is performed entirely on your device using the llama.cpp runtime. 
+            AI inference is performed locally on your device using the llama.cpp runtime. 
             Your prompts, conversation history, and retrieved memories are processed locally 
             and are not transmitted to any external AI service or API.
           </p>
@@ -124,7 +124,7 @@ export default function PrivacyPage() {
           </p>
           <p>
             The App optionally supports biometric app lock (fingerprint or face unlock) using 
-            Android&apos;s Biometric API. Biometric data is handled entirely by Android and is 
+            Android&apos;s Biometric API. If Biometric Security is enabled (in development), data is handled by Android and is 
             never transmitted to or processed by Moonlight AI.
           </p>
 
@@ -176,7 +176,7 @@ export default function PrivacyPage() {
 
           <h2>12. Data Retention and Deletion</h2>
           <p>
-            Since all data is stored locally on your device, you control its retention entirely. 
+            Since all data is stored locally on your device, you control its retention. 
             You can delete individual conversations, memories, or workspaces within the App. 
             You can delete all App data by using Android&apos;s &quot;Clear Storage&quot; function 
             in your device Settings, or by uninstalling the App.

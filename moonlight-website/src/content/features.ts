@@ -8,10 +8,14 @@ import {
   Zap,
   HardDrive,
   Eye,
-  FileText
+  FileText,
+  Workflow,
+  Cpu,
+  Network,
+  Bot
 } from "lucide-react";
 
-export type FeatureStatus = "RELEASED" | "BETA" | "MODEL-DEPENDENT" | "COMING SOON" | "NOT AVAILABLE";
+export type FeatureStatus = "RELEASED" | "BETA" | "MODEL-DEPENDENT" | "IN DEVELOPMENT" | "NOT AVAILABLE";
 
 export interface Feature {
   id: string;
@@ -72,17 +76,6 @@ export const features: Feature[] = [
     status: "RELEASED"
   },
   {
-    id: "biometric-lock",
-    title: "Biometric Security",
-    headline: "Lock the app with your fingerprint.",
-    description: "Ensure your private AI conversations remain private even if you hand your unlocked phone to someone else.",
-    technical: "Uses the Android KeyStore and standard biometric authentication APIs.",
-    benefit: "An extra layer of physical security for your locally stored data.",
-    icon: Lock,
-    color: "rose",
-    status: "RELEASED"
-  },
-  {
     id: "offline-mode",
     title: "Offline Inference",
     headline: "No internet? No problem.",
@@ -98,6 +91,17 @@ export const features: Feature[] = [
 
 export const comingSoonFeatures: Feature[] = [
   {
+    id: "biometric-lock",
+    title: "Biometric Security",
+    headline: "Lock the app with your fingerprint.",
+    description: "Ensure your private AI conversations remain private even if you hand your unlocked phone to someone else.",
+    technical: "Will use the Android KeyStore and standard biometric authentication APIs.",
+    benefit: "An extra layer of physical security for your locally stored data.",
+    icon: Lock,
+    color: "rose",
+    status: "IN DEVELOPMENT"
+  },
+  {
     id: "local-memory",
     title: "Local Memory",
     headline: "Continuous context extraction",
@@ -106,7 +110,7 @@ export const comingSoonFeatures: Feature[] = [
     benefit: "The AI will remember things about you across different conversations.",
     icon: HardDrive,
     color: "slate",
-    status: "COMING SOON"
+    status: "IN DEVELOPMENT"
   },
   {
     id: "semantic-search",
@@ -117,7 +121,7 @@ export const comingSoonFeatures: Feature[] = [
     benefit: "Instantly recall past topics even if you don't remember the exact words used.",
     icon: Search,
     color: "slate",
-    status: "COMING SOON"
+    status: "IN DEVELOPMENT"
   },
   {
     id: "vision",
@@ -128,7 +132,7 @@ export const comingSoonFeatures: Feature[] = [
     benefit: "Ask questions about photos without uploading them to cloud servers.",
     icon: Eye,
     color: "slate",
-    status: "COMING SOON"
+    status: "IN DEVELOPMENT"
   },
   {
     id: "ocr",
@@ -139,6 +143,50 @@ export const comingSoonFeatures: Feature[] = [
     benefit: "Quickly scan physical documents and feed the text into your local LLM.",
     icon: FileText,
     color: "slate",
-    status: "COMING SOON"
+    status: "IN DEVELOPMENT"
+  },
+  {
+    id: "agents",
+    title: "Autonomous Agents",
+    headline: "AI that can take action",
+    description: "The AgentEngine is being implemented to allow models to execute multi-step reasoning and use tools.",
+    technical: "Will integrate with the ToolRegistry for function calling.",
+    benefit: "Move beyond simple chat and have Moonlight perform tasks for you.",
+    icon: Bot,
+    color: "slate",
+    status: "IN DEVELOPMENT"
+  },
+  {
+    id: "workflows",
+    title: "Workflows",
+    headline: "Automate repetitive tasks",
+    description: "The WorkflowEngine will allow you to create and save multi-step prompt chains.",
+    technical: "Graph-based execution engine currently in development.",
+    benefit: "Run complex, multi-stage prompts with a single tap.",
+    icon: Workflow,
+    color: "slate",
+    status: "IN DEVELOPMENT"
+  },
+  {
+    id: "plugins",
+    title: "Local Plugins",
+    headline: "Expand Moonlight's capabilities",
+    description: "The PluginSandbox is being built to allow secure, local extensions to Moonlight's functionality.",
+    technical: "Will provide a secure execution environment for third-party tools.",
+    benefit: "Add new tools to your AI without exposing your data.",
+    icon: Cpu,
+    color: "slate",
+    status: "IN DEVELOPMENT"
+  },
+  {
+    id: "knowledge-graph",
+    title: "Knowledge Graph",
+    headline: "Connect your concepts",
+    description: "A local Knowledge Graph is in development to link extracted entities and facts together.",
+    technical: "Will build relationships between extracted memories to improve context retrieval.",
+    benefit: "The AI will understand the relationships between different topics you discuss.",
+    icon: Network,
+    color: "slate",
+    status: "IN DEVELOPMENT"
   }
 ];

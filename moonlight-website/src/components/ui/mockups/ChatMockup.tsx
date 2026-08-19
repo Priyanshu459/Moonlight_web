@@ -31,9 +31,9 @@ export function ChatMockup() {
           </div>
           <div className="flex flex-col gap-1">
             <div className="bg-transparent text-white/90 text-xs px-2 py-1.5 leading-relaxed">
-              <p className="mb-2">Local LLM inference runs entirely on your device&apos;s hardware (CPU/GPU) rather than sending data to a cloud server.</p>
+              <p className="mb-2">Local LLM inference runs on your device&apos;s hardware (CPU/GPU) rather than sending data to a cloud server.</p>
               <p className="mb-2">Moonlight uses a technology called <strong className="text-white">llama.cpp</strong> which is highly optimized for mobile devices. The model weights are stored locally on your phone&apos;s storage in a quantized format (GGUF).</p>
-              <p>Because the computation happens on-device, it works completely offline and your data never leaves your phone.</p>
+              <p>Because the computation happens on-device, it works offline and your chat history is stored locally.</p>
             </div>
             {/* Typing indicator simulating generation */}
             <div className="flex items-center gap-1 px-2 mt-1">

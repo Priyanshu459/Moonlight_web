@@ -101,7 +101,7 @@ export default function HowItWorksPage() {
               <div className="bg-[#111318] border border-white/5 rounded-2xl p-8 shadow-xl">
                 <h3 className="text-2xl font-bold text-white mb-4">Local Inference</h3>
                 <p className="text-white/60">
-                  The model calculates probabilities for the next token based entirely on the mathematical weights stored on your phone. It uses your device&apos;s CPU/GPU to perform matrix multiplication, generating the answer one word at a time. No data is sent to a server.
+                  The model calculates probabilities for the next token based on the mathematical weights stored on your phone. It uses your device&apos;s CPU/GPU to perform matrix multiplication, generating the answer one word at a time. The computation happens locally.
                 </p>
               </div>
             </div>
@@ -118,7 +118,7 @@ export default function HowItWorksPage() {
               <div className="bg-[#111318] border border-violet-500/20 rounded-2xl p-8 shadow-[0_8px_32px_rgba(139,92,246,0.05)]">
                 <h3 className="text-2xl font-bold text-white mb-4">De-tokenization</h3>
                 <p className="text-white/60 mb-6">
-                  The predicted tokens are converted back into human-readable text and streamed into your chat interface instantly. The entire loop completes entirely within your physical device.
+                  The predicted tokens are converted back into human-readable text and streamed into your chat interface instantly. The entire loop completes within your physical device.
                 </p>
                 <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
                   <div className="h-full bg-violet-500 w-[80%] rounded-full relative">

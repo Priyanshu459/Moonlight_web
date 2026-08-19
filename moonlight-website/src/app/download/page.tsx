@@ -134,7 +134,7 @@ export default function DownloadPage() {
         <div className="mt-8 flex items-start gap-3 p-5 rounded-2xl bg-white/5 border border-white/10 max-w-3xl mx-auto">
           <AlertTriangle size={20} className="text-white/50 shrink-0" />
           <p className="text-sm text-white/60 leading-relaxed">
-            <strong className="text-white font-semibold">Important note on RAM:</strong> Language models must be loaded entirely into your device&apos;s active memory (RAM). If your device has 4 GB of RAM, you physically cannot run a 4.5 GB model. Moonlight provides smaller models (like Phi-3 Mini) specifically for memory-constrained devices.
+            <strong className="text-white font-semibold">Important note on RAM:</strong> Language models must be loaded into your device&apos;s active memory (RAM). If your device has 4 GB of RAM, you physically cannot run a 4.5 GB model. Moonlight provides smaller models (like Phi-3 Mini) specifically for memory-constrained devices.
           </p>
         </div>
       </div>

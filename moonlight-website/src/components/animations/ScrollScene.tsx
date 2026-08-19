@@ -136,7 +136,7 @@ export function ScrollScene() {
                     className="text-white/90 text-xs px-2 py-1.5 self-start max-w-[90%]"
                     style={{ opacity: uiOpacity2 }}
                   >
-                    1. Absolute Privacy: Data never leaves the device.<br/>
+                    1. Privacy by Architecture: Chats stay on your device.<br/>
                     2. Offline Capable: Works without internet.<br/>
                     3. Zero Latency: No network roundtrips.
                   </motion.div>

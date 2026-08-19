@@ -4,6 +4,7 @@ import { PhoneMockup } from "@/components/ui/mockups/PhoneMockup";
 import { ChatMockup } from "@/components/ui/mockups/ChatMockup";
 import { ModelStoreMockup } from "@/components/ui/mockups/ModelStoreMockup";
 import { OrbitSystem } from "@/components/ui/OrbitSystem";
+import { comingSoonFeatures } from "@/content/features";
 
 export const metadata = {
   title: "Features | Moonlight AI",
@@ -111,18 +112,13 @@ export default function FeaturesPage() {
             <p className="text-white/50 mb-12">Features currently being built in the Moonlight repository. Not yet available in the production APK.</p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {[
-                { name: "Long-term Memory", desc: "Local semantic vector database for recalling past conversations." },
-                { name: "Vision Models (LLaVA)", desc: "Processing images locally on-device without cloud uploads." },
-                { name: "Local OCR", desc: "Extracting text from images using on-device neural engines." },
-                { name: "Semantic Search", desc: "Searching through your chat history by meaning, not just keywords." }
-              ].map(feat => (
-                <div key={feat.name} className="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
+              {comingSoonFeatures.map(feat => (
+                <div key={feat.id} className="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-white/10 text-white/60 uppercase">Roadmap</span>
-                    <h3 className="font-semibold text-white">{feat.name}</h3>
+                    <h3 className="font-semibold text-white">{feat.title}</h3>
                   </div>
-                  <p className="text-sm text-white/50">{feat.desc}</p>
+                  <p className="text-sm text-white/50">{feat.description}</p>
                 </div>
               ))}
             </div>
