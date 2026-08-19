@@ -1,5 +1,6 @@
-import { Lock, Cpu, CloudOff, HardDrive } from "lucide-react";
+import { Lock, Cloud, ArrowDown } from "lucide-react";
 import { OrbitSystem } from "@/components/ui/OrbitSystem";
+import { DeviceBoundaryIcon, ModelNodeIcon, InferenceStreamIcon } from "@/components/ui/MoonlightIcons";
 
 export function PrivacySection() {
   return (
@@ -18,42 +19,79 @@ export function PrivacySection() {
         </div>
 
         {/* The Architectural Visualization */}
-        <div className="relative max-w-4xl mx-auto h-[500px] flex items-center justify-center rounded-3xl border border-white/5 bg-[#0d0e12] overflow-hidden">
+        <div className="relative max-w-4xl mx-auto flex flex-col md:flex-row gap-8 items-stretch justify-center rounded-3xl border border-white/5 bg-[#0d0e12] overflow-hidden p-8">
           
           {/* Subtle grid background */}
           <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.02]"></div>
-          <div className="absolute inset-0 hero-grid opacity-30"></div>
+          
+          {/* Network Legend */}
+          <div className="flex-1 flex flex-col items-center justify-start pt-8 relative z-10">
+             <div className="w-16 h-16 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-4">
+                <Cloud size={24} className="text-indigo-400" />
+             </div>
+             <div className="text-xs font-bold text-white uppercase tracking-widest mb-1">Internet</div>
+             <div className="text-[10px] text-white/40 mb-6 uppercase tracking-widest">Network Required</div>
+             
+             <div className="flex flex-col gap-2 w-full max-w-[200px]">
+                <div className="bg-white/5 border border-white/10 rounded-lg p-2.5 text-xs text-white/70 text-center">
+                  Model Download
+                </div>
+                <div className="bg-white/5 border border-white/10 rounded-lg p-2.5 text-xs text-white/70 text-center">
+                  Play Store Access
+                </div>
+             </div>
 
-          {/* Distant Cloud */}
-          <div className="absolute top-8 right-8 flex items-center gap-3 opacity-30">
-             <CloudOff size={24} className="text-white/40" />
-             <span className="text-xs font-bold tracking-widest text-white/40 uppercase">Distant Cloud</span>
+             <div className="h-16 w-[1px] bg-gradient-to-b from-indigo-500/50 to-transparent my-4 relative">
+                <ArrowDown size={14} className="text-indigo-400 absolute -bottom-3 -left-[6px]" />
+             </div>
           </div>
 
           {/* The Local Boundary */}
-          <div className="relative z-10 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] rounded-full border border-indigo-500/30 bg-indigo-500/5 flex items-center justify-center shadow-[inset_0_0_80px_rgba(91,124,249,0.1)]">
+          <div className="flex-[2] relative z-10 w-full rounded-2xl border-2 border-emerald-500/30 bg-emerald-500/5 p-8 flex flex-col items-center shadow-[inset_0_0_80px_rgba(16,185,129,0.05)]">
             
-            <div className="absolute -top-3 bg-[#0d0e12] px-2 text-[10px] font-bold tracking-widest text-indigo-400 uppercase">
-               Device Boundary
+            <div className="absolute -top-3 bg-[#0d0e12] px-3 flex items-center gap-2">
+               <DeviceBoundaryIcon className="w-4 h-4 text-emerald-400" />
+               <span className="text-[10px] font-bold tracking-widest text-emerald-400 uppercase">Your Device</span>
+            </div>
+            <div className="absolute -bottom-3 bg-[#0d0e12] px-3">
+               <span className="text-[10px] font-bold tracking-widest text-emerald-400/50 uppercase">Strictly Local Boundary</span>
             </div>
 
-            <OrbitSystem size={350} className="absolute opacity-40" />
+            <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none">
+               <OrbitSystem size={350} />
+            </div>
 
             {/* Inner Device Stack */}
-            <div className="flex flex-col gap-3">
-              <div className="flex items-center gap-3 px-4 py-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md">
-                <HardDrive size={16} className="text-indigo-400" />
-                <span className="text-sm font-medium text-white/90">Local Storage</span>
+            <div className="flex flex-col items-center w-full gap-4 relative z-10 mt-4">
+              <div className="w-full max-w-[280px] flex items-center gap-4 px-5 py-4 rounded-xl bg-[#1a1b20] border border-white/10 shadow-lg">
+                <ModelNodeIcon className="w-6 h-6 text-indigo-400" />
+                <div>
+                   <div className="text-sm font-semibold text-white">GGUF Model</div>
+                   <div className="text-[10px] text-white/50">Stored in local storage</div>
+                </div>
               </div>
               
-              <div className="flex items-center gap-3 px-4 py-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md">
-                <Cpu size={16} className="text-violet-400" />
-                <span className="text-sm font-medium text-white/90">Neural Inference</span>
+              <div className="w-[1px] h-4 bg-white/20" />
+              
+              <div className="w-full max-w-[280px] flex items-center gap-4 px-5 py-4 rounded-xl bg-[#1a1b20] border border-emerald-500/20 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
+                <div className="w-6 h-6 rounded-full bg-emerald-500/20 flex items-center justify-center relative">
+                   <div className="absolute inset-0 bg-emerald-500/20 rounded-full animate-pulse" />
+                   <InferenceStreamIcon className="w-3 h-3 text-emerald-400" />
+                </div>
+                <div>
+                   <div className="text-sm font-semibold text-white">Inference Engine</div>
+                   <div className="text-[10px] text-emerald-400/80">llama.cpp • CPU/GPU</div>
+                </div>
               </div>
               
-              <div className="flex items-center gap-3 px-4 py-2 rounded-xl bg-white/5 border border-white/10 backdrop-blur-md">
-                <Lock size={16} className="text-emerald-400" />
-                <span className="text-sm font-medium text-white/90">Private Memory</span>
+              <div className="w-[1px] h-4 bg-white/20" />
+              
+              <div className="w-full max-w-[280px] flex items-center gap-4 px-5 py-4 rounded-xl bg-[#1a1b20] border border-white/10 shadow-lg">
+                <Lock size={20} className="text-violet-400" />
+                <div>
+                   <div className="text-sm font-semibold text-white">Private Conversations</div>
+                   <div className="text-[10px] text-white/50">Stored in local database</div>
+                </div>
               </div>
             </div>
 

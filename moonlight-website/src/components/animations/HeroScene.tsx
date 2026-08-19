@@ -6,6 +6,7 @@ import { PhoneMockup } from "@/components/ui/mockups/PhoneMockup";
 import { ChatMockup } from "@/components/ui/mockups/ChatMockup";
 import { OrbitSystem } from "@/components/ui/OrbitSystem";
 import { ArrowRight } from "lucide-react";
+import { ModelNodeIcon, InferenceStreamIcon, DeviceBoundaryIcon } from "@/components/ui/MoonlightIcons";
 
 export function HeroScene() {
   const prefersReducedMotion = useReducedMotion();
@@ -43,12 +44,12 @@ export function HeroScene() {
             initial="hidden"
             animate="visible"
           >
-            <motion.div variants={itemVars} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-8 tracking-wide">
+            <motion.div variants={itemVars} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-8 tracking-wide uppercase">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
               </span>
-              LOCAL INTELLIGENCE INTERFACE
+              MOONLIGHT AI
             </motion.div>
             
             <motion.h1 variants={itemVars} className="text-display-lg text-white mb-6 tracking-tight leading-[1.05]">
@@ -57,8 +58,7 @@ export function HeroScene() {
             </motion.h1>
             
             <motion.p variants={itemVars} className="text-lg text-white/60 mb-10 max-w-lg leading-relaxed">
-              Moonlight brings powerful language models directly to Android. 
-              No cloud dependency. No data harvesting. Intelligence that stays close.
+              Run capable AI models locally, keep conversations on-device, and continue working without an internet connection after your models are installed.
             </motion.p>
             
             <motion.div variants={itemVars} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
@@ -95,19 +95,33 @@ export function HeroScene() {
             {!prefersReducedMotion && (
               <>
                 <motion.div 
-                  className="absolute top-[15%] left-[10%] hidden md:flex flex-col items-center gap-2"
+                  className="absolute top-[15%] left-[5%] hidden md:flex flex-col items-center gap-2 z-10"
                   initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1, duration: 1 }}
                 >
+                  <div className="w-10 h-10 rounded-full bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center backdrop-blur-sm">
+                    <ModelNodeIcon className="w-5 h-5 text-indigo-400" />
+                  </div>
                   <div className="text-[9px] font-bold tracking-widest text-indigo-400 uppercase">Model</div>
-                  <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
                 </motion.div>
                 
                 <motion.div 
-                  className="absolute bottom-[20%] right-[10%] hidden md:flex flex-col items-center gap-2"
+                  className="absolute bottom-[20%] right-[5%] hidden md:flex flex-col items-center gap-2 z-10"
                   initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.5, duration: 1 }}
                 >
+                  <div className="w-10 h-10 rounded-full bg-violet-500/10 border border-violet-500/30 flex items-center justify-center backdrop-blur-sm">
+                    <InferenceStreamIcon className="w-5 h-5 text-violet-400" />
+                  </div>
                   <div className="text-[9px] font-bold tracking-widest text-violet-400 uppercase">Response</div>
-                  <div className="w-1.5 h-1.5 rounded-full bg-violet-500 animate-pulse" />
+                </motion.div>
+
+                <motion.div 
+                  className="absolute top-[10%] right-[15%] hidden md:flex flex-col items-center gap-2 z-10"
+                  initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2, duration: 1 }}
+                >
+                  <div className="w-8 h-8 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center backdrop-blur-sm">
+                    <DeviceBoundaryIcon className="w-4 h-4 text-emerald-400" />
+                  </div>
+                  <div className="text-[9px] font-bold tracking-widest text-emerald-400 uppercase">Local</div>
                 </motion.div>
               </>
             )}

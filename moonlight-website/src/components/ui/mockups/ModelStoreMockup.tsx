@@ -1,4 +1,7 @@
-import { Download, CheckCircle2, Search, ArrowLeft } from "lucide-react";
+"use client";
+
+import { Download, CheckCircle2, Search, ArrowLeft, ShieldCheck, Database, Zap } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function ModelStoreMockup() {
   return (
@@ -6,7 +9,7 @@ export function ModelStoreMockup() {
       {/* App Bar */}
       <div className="px-4 py-3 border-b border-white/5 bg-[#121318]/90 backdrop-blur-md flex items-center gap-3 sticky top-0 z-10">
         <ArrowLeft size={16} className="text-white/70" />
-        <div className="text-sm font-semibold text-white">Model Store</div>
+        <div className="text-sm font-semibold text-white">Model Catalog</div>
       </div>
 
       <div className="flex-1 p-4 space-y-4 overflow-y-auto hide-scrollbar">
@@ -22,11 +25,11 @@ export function ModelStoreMockup() {
           <div className="bg-[#1a1b20] border border-white/5 rounded-xl p-3 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
-                <span className="text-indigo-400 text-xs font-bold">L3</span>
+                <span className="text-indigo-400 text-xs font-bold">P3</span>
               </div>
               <div>
-                <div className="text-xs font-semibold text-white">Llama 3 8B</div>
-                <div className="text-[10px] text-white/50">4.5 GB • Meta</div>
+                <div className="text-xs font-semibold text-white">Phi-3 Mini</div>
+                <div className="text-[10px] text-white/50">2.2 GB • Offline Ready</div>
               </div>
             </div>
             <div className="w-6 h-6 rounded-full bg-green-500/10 flex items-center justify-center">
@@ -35,29 +38,57 @@ export function ModelStoreMockup() {
           </div>
         </div>
 
-        {/* Section: Downloading */}
+        {/* Section: Model Installation Demonstration */}
         <div>
-          <div className="text-[10px] font-semibold text-white/40 uppercase tracking-widest mb-2 px-1">Downloading</div>
-          <div className="bg-[#1a1b20] border border-white/10 rounded-xl p-3 flex flex-col gap-3 relative overflow-hidden">
+          <div className="text-[10px] font-semibold text-indigo-400 uppercase tracking-widest mb-2 px-1 flex items-center gap-1">
+            <Zap size={10} /> How model installation works
+          </div>
+          <div className="bg-[#1a1b20] border border-indigo-500/20 rounded-xl p-3 flex flex-col gap-3 relative overflow-hidden">
             {/* Active highlight */}
             <div className="absolute inset-x-0 top-0 h-0.5 bg-indigo-500" />
             
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
-                  <span className="text-emerald-400 text-xs font-bold">P3</span>
+                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center relative overflow-hidden">
+                   <div className="absolute inset-0 bg-emerald-500/10 animate-pulse" />
+                  <span className="text-emerald-400 text-xs font-bold z-10">D1</span>
                 </div>
                 <div>
-                  <div className="text-xs font-semibold text-white">Phi-3 Mini</div>
-                  <div className="text-[10px] text-white/50">Downloading 1.2 / 2.2 GB</div>
+                  <div className="text-xs font-semibold text-white">DeepSeek R1 7B</div>
+                  <div className="text-[10px] text-white/50 flex items-center gap-1">
+                    <motion.span 
+                      animate={{ opacity: [0.5, 1, 0.5] }} 
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      Verifying SHA-256 Checksum...
+                    </motion.span>
+                  </div>
                 </div>
               </div>
-              <div className="text-[10px] font-mono text-indigo-400 font-medium">55%</div>
+              <div className="text-[10px] font-mono text-indigo-400 font-medium">Wait</div>
             </div>
             
+            {/* Installation Pipeline visualization */}
+            <div className="flex justify-between items-center text-[8px] text-white/40 px-1 mt-1 font-mono uppercase">
+               <div className="flex flex-col items-center gap-1 text-emerald-400">
+                  <Download size={10} />
+                  <span>Download</span>
+               </div>
+               <div className="h-[1px] flex-1 bg-white/10 mx-2" />
+               <div className="flex flex-col items-center gap-1 text-indigo-400">
+                  <ShieldCheck size={10} />
+                  <span>Verify</span>
+               </div>
+               <div className="h-[1px] flex-1 bg-white/10 mx-2" />
+               <div className="flex flex-col items-center gap-1">
+                  <Database size={10} />
+                  <span>Install</span>
+               </div>
+            </div>
+
             {/* Progress Bar */}
-            <div className="w-full h-1.5 bg-black/50 rounded-full overflow-hidden">
-              <div className="h-full bg-indigo-500 rounded-full w-[55%] relative">
+            <div className="w-full h-1.5 bg-black/50 rounded-full overflow-hidden mt-1">
+              <div className="h-full bg-indigo-500 rounded-full w-[60%] relative">
                 <div className="absolute inset-0 bg-white/20 animate-pulse" />
               </div>
             </div>
@@ -66,12 +97,12 @@ export function ModelStoreMockup() {
 
         {/* Section: Available */}
         <div>
-          <div className="text-[10px] font-semibold text-white/40 uppercase tracking-widest mb-2 px-1">Available</div>
+          <div className="text-[10px] font-semibold text-white/40 uppercase tracking-widest mb-2 px-1">Available Models</div>
           <div className="bg-[#1a1b20] border border-white/5 rounded-xl flex flex-col divide-y divide-white/5">
             {[
-              { id: 'M7', name: 'Mistral 7B', size: '4.1 GB', color: 'blue' },
-              { id: 'G2', name: 'Gemma 2 9B', size: '5.4 GB', color: 'cyan' },
-              { id: 'Q2', name: 'Qwen2 7B', size: '4.4 GB', color: 'purple' },
+              { id: 'G2', name: 'Gemma 2 9B', size: '5.4 GB', color: 'cyan', author: 'Google' },
+              { id: 'Q2', name: 'Qwen 2 7B', size: '4.4 GB', color: 'purple', author: 'Alibaba' },
+              { id: 'L1', name: 'LLaVA 1.6 7B', size: '4.8 GB', color: 'rose', author: 'LLaVA Team' },
             ].map((model) => (
               <div key={model.id} className="p-3 flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -80,7 +111,7 @@ export function ModelStoreMockup() {
                   </div>
                   <div>
                     <div className="text-xs font-semibold text-white">{model.name}</div>
-                    <div className="text-[10px] text-white/50">{model.size} • Q4_K_M</div>
+                    <div className="text-[10px] text-white/50">{model.size} • {model.author}</div>
                   </div>
                 </div>
                 <button className="w-6 h-6 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors">
