@@ -20,7 +20,7 @@ export interface Feature {
   description: string;
   technical: string;
   benefit: string;
-  icon: any; // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  icon: import('lucide-react').LucideIcon;
   color: string;
   note?: string;
   status: FeatureStatus;

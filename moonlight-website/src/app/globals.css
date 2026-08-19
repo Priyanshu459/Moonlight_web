@@ -306,3 +306,19 @@ body {
   .section-sm { padding: 40px 0; }
   .container-page { padding: 0 16px; }
 }
+
+/* =============================================
+   UTILITIES
+============================================= */
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}

@@ -1,191 +1,139 @@
-import type { Metadata } from "next";
-import { siteConfig } from "@/lib/config";
-import { ArrowRight, ArrowDown } from "lucide-react";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 
-export const metadata: Metadata = {
-  title: "How It Works",
-  description: `Understand how ${siteConfig.name} runs AI locally on your Android device using llama.cpp and GGUF models.`,
-  alternates: { canonical: `${siteConfig.url}/how-it-works` },
+export const metadata = {
+  title: "How It Works | Moonlight AI",
+  description: "Understand the technical architecture behind Moonlight AI&apos;s local inference engine.",
 };
-
-function FlowStep({ label, sublabel, index }: { label: string; sublabel?: string; index: number }) {
-  return (
-    <div className="flex flex-col items-center text-center">
-      <div className="w-10 h-10 rounded-2xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-sm font-bold text-indigo-400 mb-3 shadow-[0_0_15px_rgba(99,102,241,0.1)]">
-        {index}
-      </div>
-      <div className="text-sm font-bold text-white">{label}</div>
-      {sublabel && <div className="text-[11px] text-white/50 mt-1 max-w-[100px] leading-tight">{sublabel}</div>}
-    </div>
-  );
-}
-
-function FlowArrow({ vertical = false, className }: { vertical?: boolean; className?: string }) {
-  if (vertical) {
-    return (
-      <div className={`flex items-center justify-center text-white/20 py-2 ${className || ""}`}>
-        <ArrowDown size={16} />
-      </div>
-    );
-  }
-  return (
-    <div className={`flex items-center justify-center text-white/20 px-2 self-start mt-5 hidden sm:flex ${className || ""}`}>
-      <ArrowRight size={16} />
-    </div>
-  );
-}
 
 export default function HowItWorksPage() {
   return (
-    <div className="pt-32 pb-20">
-      {/* Header */}
-      <div className="container-page text-center mb-24">
-        <div className="inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-indigo-400 bg-indigo-500/10 rounded-full border border-indigo-500/20 mb-6">
-          Architecture
+    <div className="min-h-screen bg-[#0A0B0E] flex flex-col">
+      <Navbar />
+
+      <main className="flex-1 pt-32 pb-24">
+        
+        {/* Header */}
+        <div className="container-page mb-24 text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-semibold mb-6 tracking-wide uppercase">
+            Architecture
+          </div>
+          <h1 className="text-display-lg text-white mb-6 tracking-tight">How Moonlight thinks.</h1>
+          <p className="text-xl text-white/60 max-w-2xl mx-auto">
+            A transparent look at the lifecycle of a prompt inside a local inference engine.
+          </p>
         </div>
-        <h1 className="text-display-lg text-white mb-6">
-          How Moonlight <span className="gradient-text">works.</span>
-        </h1>
-        <p className="text-lg text-white/60 max-w-2xl mx-auto leading-relaxed">
-          Moonlight AI is built around a local-first architecture. 
-          Here is exactly how the verified systems operate under the hood.
-        </p>
-      </div>
 
-      <div className="container-page max-w-4xl space-y-32">
-
-        {/* Section 1 — Inference Architecture */}
-        <div className="relative">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+        <div className="container-page max-w-4xl">
           
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-4">
-              1. On-Device AI Inference
-            </h2>
-            <p className="text-white/60 leading-relaxed text-sm max-w-2xl">
-              When you send a message to Moonlight, your prompt is processed entirely on your device. 
-              There is no cloud API call during inference. The entire pipeline runs locally using your phone&apos;s processor.
-            </p>
+          <div className="space-y-12">
+            {/* 01 DOWNLOAD */}
+            <div className="relative pl-12 md:pl-32 py-6">
+              <div className="absolute left-0 top-0 bottom-0 w-px bg-white/10 md:left-16" />
+              <div className="absolute left-[-5px] md:left-[59px] top-10 w-3 h-3 rounded-full bg-indigo-500 shadow-[0_0_12px_rgba(99,102,241,0.8)]" />
+              
+              <div className="md:absolute md:left-[-120px] md:top-8 text-indigo-400 font-bold tracking-widest text-sm mb-4 md:mb-0">
+                01 DOWNLOAD
+              </div>
+              
+              <div className="bg-[#111318] border border-white/5 rounded-2xl p-8 shadow-xl">
+                <h3 className="text-2xl font-bold text-white mb-4">Acquiring the Intelligence</h3>
+                <p className="text-white/60 mb-6">
+                  Before Moonlight can think, it needs a brain. Models are downloaded from verified Hugging Face repositories directly to your device&apos;s internal storage.
+                </p>
+                <div className="bg-[#0A0B0E] p-4 rounded-xl border border-white/5 text-sm font-mono text-emerald-400 flex flex-col gap-2">
+                  <span>&gt; Connecting to huggingface.co</span>
+                  <span>&gt; Downloading weights (Q4_K_M)</span>
+                  <span>&gt; Verifying SHA-256 signature</span>
+                  <span className="text-indigo-400">&gt; Saved to local storage</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 02 LOAD */}
+            <div className="relative pl-12 md:pl-32 py-6">
+              <div className="absolute left-0 top-0 bottom-0 w-px bg-white/10 md:left-16" />
+              <div className="absolute left-[-4px] md:left-[60px] top-10 w-2 h-2 rounded-full bg-white/20" />
+              
+              <div className="md:absolute md:left-[-120px] md:top-8 text-white/40 font-bold tracking-widest text-sm mb-4 md:mb-0">
+                02 LOAD
+              </div>
+              
+              <div className="bg-[#111318] border border-white/5 rounded-2xl p-8 shadow-xl">
+                <h3 className="text-2xl font-bold text-white mb-4">Memory Mapping</h3>
+                <p className="text-white/60">
+                  When you start a chat, Moonlight uses `llama.cpp` to map the model weights into your device&apos;s RAM. This prepares the neural network for inference without fully uncompressing it, preserving your device&apos;s memory.
+                </p>
+              </div>
+            </div>
+
+            {/* 03 PROCESS */}
+            <div className="relative pl-12 md:pl-32 py-6">
+              <div className="absolute left-0 top-0 bottom-0 w-px bg-white/10 md:left-16" />
+              <div className="absolute left-[-4px] md:left-[60px] top-10 w-2 h-2 rounded-full bg-white/20" />
+              
+              <div className="md:absolute md:left-[-120px] md:top-8 text-white/40 font-bold tracking-widest text-sm mb-4 md:mb-0">
+                03 PROCESS
+              </div>
+              
+              <div className="bg-[#111318] border border-white/5 rounded-2xl p-8 shadow-xl">
+                <h3 className="text-2xl font-bold text-white mb-4">Tokenization & Context</h3>
+                <p className="text-white/60 mb-6">
+                  Your text prompt is converted into tokens (numbers) that the model understands. These tokens are passed into the model along with the system prompt, which defines the AI&apos;s behavior.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-white/70">&quot;What&quot; → 1245</span>
+                  <span className="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-white/70">&quot;is&quot; → 342</span>
+                  <span className="px-3 py-1 bg-white/5 border border-white/10 rounded text-xs text-white/70">&quot;privacy?&quot; → 8901</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 04 GENERATE */}
+            <div className="relative pl-12 md:pl-32 py-6">
+              <div className="absolute left-0 top-0 bottom-0 w-px bg-white/10 md:left-16" />
+              <div className="absolute left-[-4px] md:left-[60px] top-10 w-2 h-2 rounded-full bg-white/20" />
+              
+              <div className="md:absolute md:left-[-120px] md:top-8 text-white/40 font-bold tracking-widest text-sm mb-4 md:mb-0">
+                04 GENERATE
+              </div>
+              
+              <div className="bg-[#111318] border border-white/5 rounded-2xl p-8 shadow-xl">
+                <h3 className="text-2xl font-bold text-white mb-4">Local Inference</h3>
+                <p className="text-white/60">
+                  The model calculates probabilities for the next token based entirely on the mathematical weights stored on your phone. It uses your device&apos;s CPU/GPU to perform matrix multiplication, generating the answer one word at a time. No data is sent to a server.
+                </p>
+              </div>
+            </div>
+
+            {/* 05 RESPOND */}
+            <div className="relative pl-12 md:pl-32 py-6">
+              <div className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-white/10 to-transparent md:left-16" />
+              <div className="absolute left-[-5px] md:left-[59px] top-10 w-3 h-3 rounded-full bg-violet-500 shadow-[0_0_12px_rgba(139,92,246,0.8)]" />
+              
+              <div className="md:absolute md:left-[-120px] md:top-8 text-violet-400 font-bold tracking-widest text-sm mb-4 md:mb-0">
+                05 RESPOND
+              </div>
+              
+              <div className="bg-[#111318] border border-violet-500/20 rounded-2xl p-8 shadow-[0_8px_32px_rgba(139,92,246,0.05)]">
+                <h3 className="text-2xl font-bold text-white mb-4">De-tokenization</h3>
+                <p className="text-white/60 mb-6">
+                  The predicted tokens are converted back into human-readable text and streamed into your chat interface instantly. The entire loop completes entirely within your physical device.
+                </p>
+                <div className="w-full h-2 bg-white/5 rounded-full overflow-hidden">
+                  <div className="h-full bg-violet-500 w-[80%] rounded-full relative">
+                     <div className="absolute top-0 right-0 bottom-0 w-20 bg-gradient-to-r from-transparent to-white/50 animate-pulse" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
 
-          {/* Flow diagram */}
-          <div className="p-8 md:p-12 rounded-[2.5rem] bg-[#121318] border border-white/5 shadow-2xl relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
-            
-            <h3 className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-10 text-center">
-              Inference Pipeline
-            </h3>
-            
-            <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center sm:items-start gap-4 sm:gap-2">
-              <FlowStep index={1} label="User Prompt" sublabel="Raw text input" />
-              <FlowArrow vertical className="sm:hidden" />
-              <FlowArrow />
-              
-              <FlowStep index={2} label="Chat Template" sublabel="Formats prompt" />
-              <FlowArrow vertical className="sm:hidden" />
-              <FlowArrow />
-              
-              <FlowStep index={3} label="llama.cpp" sublabel="Local compute engine" />
-              <FlowArrow vertical className="sm:hidden" />
-              <FlowArrow />
-              
-              <FlowStep index={4} label="Token Stream" sublabel="Emits deltas" />
-              <FlowArrow vertical className="sm:hidden" />
-              <FlowArrow />
-              
-              <FlowStep index={5} label="UI Render" sublabel="Shows on screen" />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-            <div className="p-8 rounded-3xl bg-white/5 border border-white/5">
-              <h4 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-indigo-400"></div>
-                Runtime Engine
-              </h4>
-              <p className="text-sm text-white/50 leading-relaxed">
-                The RuntimeManager orchestrates model loading and inference. 
-                It uses LlamaCppBackend — a native FFI bridge to the highly optimized C++ library — 
-                to load models into memory and generate tokens.
-              </p>
-            </div>
-            <div className="p-8 rounded-3xl bg-white/5 border border-white/5">
-              <h4 className="text-sm font-bold text-white mb-3 flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
-                GGUF Models
-              </h4>
-              <p className="text-sm text-white/50 leading-relaxed">
-                GGUF is a compact model format optimized for local inference. 
-                Quantized models (usually Q4_K_M) are small enough to run on 
-                mobile devices while retaining impressive reasoning capabilities.
-              </p>
-            </div>
-          </div>
         </div>
+      </main>
 
-        {/* Section 2 — Model Downloads */}
-        <div className="relative">
-          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
-          
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-4">
-              2. Model Download Pipeline
-            </h2>
-            <p className="text-white/60 leading-relaxed text-sm max-w-2xl">
-              Downloading a model is the only time Moonlight connects to the internet. 
-              The download process includes strict integrity verification to ensure the model 
-              is authentic and undamaged before it ever touches the inference engine.
-            </p>
-          </div>
-
-          <div className="p-8 md:p-12 rounded-[2.5rem] bg-[#121318] border border-white/5 shadow-2xl relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent pointer-events-none"></div>
-
-            <h3 className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-10 text-center">
-              Download Architecture
-            </h3>
-            <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center sm:items-start gap-4 sm:gap-2">
-              <FlowStep index={1} label="Hugging Face" sublabel="Source URL" />
-              <FlowArrow vertical className="sm:hidden" />
-              <FlowArrow />
-              
-              <FlowStep index={2} label="Download" sublabel="Writes to .tmp" />
-              <FlowArrow vertical className="sm:hidden" />
-              <FlowArrow />
-              
-              <FlowStep index={3} label="SHA-256" sublabel="Verify checksum" />
-              <FlowArrow vertical className="sm:hidden" />
-              <FlowArrow />
-              
-              <FlowStep index={4} label="Rename" sublabel="Atomic install" />
-              <FlowArrow vertical className="sm:hidden" />
-              <FlowArrow />
-              
-              <FlowStep index={5} label="Ready" sublabel="Available offline" />
-            </div>
-          </div>
-
-          <div className="p-8 rounded-3xl bg-white/5 border border-white/5 mt-6 text-sm text-white/60 leading-relaxed max-w-3xl">
-            Downloads support pause/resume via HTTP range requests. The SHA-256 checksum verification 
-            runs after the download completes. The model file is atomically renamed from <code className="text-white bg-black/50 px-1.5 py-0.5 rounded">.tmp</code> to <code className="text-white bg-black/50 px-1.5 py-0.5 rounded">.gguf</code> only after verification passes, ensuring no corrupt model is ever loaded by the runtime.
-          </div>
-        </div>
-
-      </div>
-
-      {/* CTA */}
-      <div className="container-page text-center mt-32 border-t border-white/5 pt-20">
-        <h2 className="text-3xl font-bold text-white mb-6">
-          Ready to experience local AI?
-        </h2>
-        <a
-          href="/download"
-          className="inline-flex items-center gap-2 px-8 py-4 bg-indigo-500 hover:bg-indigo-600 text-white font-bold rounded-2xl transition-all hover:shadow-[0_0_24px_rgba(99,102,241,0.4)]"
-        >
-          View System Requirements
-          <ArrowRight size={18} />
-        </a>
-      </div>
+      <Footer />
     </div>
   );
 }

@@ -30,7 +30,7 @@ export function Navbar() {
       role="banner"
     >
       <nav
-        className="container-page flex items-center justify-between h-16"
+        className={`container-page flex items-center justify-between transition-all duration-300 ${isScrolled ? "h-14" : "h-16 md:h-20"}`}
         aria-label="Main navigation"
       >
         {/* Logo */}

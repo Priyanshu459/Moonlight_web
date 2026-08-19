@@ -1,13 +1,33 @@
-import { ReactNode } from "react";
+"use client";
 
-export function PhoneMockup({ children }: { children: ReactNode }) {
+import { ReactNode } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+
+export function PhoneMockup({ 
+  children, 
+  className = "", 
+  animated = false 
+}: { 
+  children: ReactNode;
+  className?: string;
+  animated?: boolean;
+}) {
+  const prefersReducedMotion = useReducedMotion();
+  const shouldAnimate = animated && !prefersReducedMotion;
+
   return (
-    <div className="relative mx-auto w-full max-w-[320px] aspect-[9/19.5]">
+    <div className={`perspective-1000 relative mx-auto w-full max-w-[320px] aspect-[9/19.5] group ${className}`}>
       {/* Device Frame */}
-      <div className="absolute inset-0 rounded-[48px] bg-[#1a1b1e] border-[8px] border-[#2c2d30] shadow-2xl shadow-black/80 overflow-hidden ring-1 ring-white/10 flex flex-col">
+      <motion.div 
+        className="absolute inset-0 rounded-[3rem] bg-[#0A0B0E] border-[6px] border-[#2c2d30] shadow-2xl overflow-hidden ring-1 ring-white/10 flex flex-col"
+        initial={shouldAnimate ? { rotateY: 20, rotateX: 10, scale: 0.95, opacity: 0 } : false}
+        animate={shouldAnimate ? { rotateY: 0, rotateX: 0, scale: 1, opacity: 1 } : false}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+        style={{ transformStyle: "preserve-3d" }}
+      >
         {/* Dynamic Island / Camera cutout */}
         <div className="absolute top-0 inset-x-0 h-7 flex justify-center z-50">
-          <div className="w-24 h-6 bg-black rounded-b-3xl" />
+          <div className="w-24 h-6 bg-black rounded-b-3xl shadow-[inset_0_-2px_4px_rgba(255,255,255,0.1)]" />
         </div>
 
         {/* Screen content area */}
@@ -47,10 +67,23 @@ export function PhoneMockup({ children }: { children: ReactNode }) {
             <div className="w-24 h-1 bg-white/30 rounded-full" />
           </div>
         </div>
-      </div>
+        
+        {/* Dynamic Screen Glare / Reflection (Responds to hover) */}
+        {!prefersReducedMotion && (
+          <div 
+            className="absolute inset-0 rounded-[3rem] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-1000 bg-gradient-to-tr from-white/0 via-white/5 to-white/0" 
+            style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 20%)" }}
+          />
+        )}
+      </motion.div>
       
-      {/* Glare effect */}
-      <div className="absolute inset-0 rounded-[48px] pointer-events-none bg-gradient-to-tr from-white/0 via-white/5 to-white/0" style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 20%)" }}></div>
+      {/* Physical Device Shadow (Depth) */}
+      <motion.div 
+        className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[80%] h-4 bg-black/60 blur-xl rounded-full -z-10"
+        initial={shouldAnimate ? { scale: 0.8, opacity: 0 } : false}
+        animate={shouldAnimate ? { scale: 1, opacity: 1 } : false}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+      />
     </div>
   );
 }
