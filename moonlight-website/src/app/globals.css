@@ -206,6 +206,76 @@ body {
   line-height: 1.2;
 }
 
+.hero-title {
+  font-size: clamp(3.35rem, 6.7vw, 6.4rem);
+  font-weight: 600;
+  letter-spacing: -0.062em;
+  line-height: 0.98;
+}
+
+.section-premium {
+  padding: 128px 0;
+}
+
+.section-intro {
+  max-width: 760px;
+}
+
+.section-intro h2 {
+  margin-top: 20px;
+  font-size: clamp(2.5rem, 5vw, 4.6rem);
+  font-weight: 600;
+  letter-spacing: -0.052em;
+  line-height: 1.02;
+}
+
+.section-intro > p:last-child {
+  max-width: 610px;
+  margin-top: 24px;
+  color: rgba(255,255,255,0.46);
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.eyebrow {
+  color: #9ba9ff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.premium-card {
+  min-height: 390px;
+  padding: 32px;
+  border: 1px solid rgba(255,255,255,0.075);
+  border-radius: 2rem;
+  background:
+    radial-gradient(circle at 15% 0%, rgba(99,102,241,0.1), transparent 38%),
+    rgba(255,255,255,0.026);
+  transition: transform 280ms ease, border-color 280ms ease, background 280ms ease;
+}
+
+.premium-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(139,148,255,0.23);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(99,102,241,0.15), transparent 42%),
+    rgba(255,255,255,0.035);
+}
+
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aeb8ff;
+  border: 1px solid rgba(132,146,255,0.18);
+  border-radius: 14px;
+  background: rgba(99,102,241,0.1);
+}
+
 /* =============================================
    HERO GRADIENT BACKGROUND
 ============================================= */
@@ -304,7 +374,9 @@ body {
 @media (max-width: 768px) {
   .section { padding: 64px 0; }
   .section-sm { padding: 40px 0; }
+  .section-premium { padding: 88px 0; }
   .container-page { padding: 0 16px; }
+  .premium-card { min-height: 0; }
 }
 
 /* =============================================

@@ -5,8 +5,9 @@ import { useState, useEffect } from "react";
 import { Menu, X, Moon } from "lucide-react";
 
 const navLinks = [
-  { href: "/features", label: "Features" },
-  { href: "/how-it-works", label: "How It Works" },
+  { href: "/features", label: "Product" },
+  { href: "/how-it-works", label: "How it works" },
+  { href: "/privacy", label: "Privacy" },
   { href: "/support", label: "Support" },
 ];
 
@@ -39,8 +40,8 @@ export function Navbar() {
           className="flex items-center gap-2.5 group"
           aria-label="Moonlight AI — home"
         >
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-shadow">
-            <Moon size={16} className="text-white" strokeWidth={2.5} />
+          <div className="w-8 h-8 rounded-full bg-white text-[#0a0b0e] flex items-center justify-center shadow-lg shadow-white/10 group-hover:shadow-white/20 transition-shadow">
+            <Moon size={16} strokeWidth={2.5} />
           </div>
           <span className="text-sm font-semibold text-[var(--text-primary)] tracking-tight">
             Moonlight AI
@@ -65,7 +66,7 @@ export function Navbar() {
           <Link
             href="/download"
             id="nav-cta"
-            className="px-4 py-2 text-sm font-semibold bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-[var(--accent-glow)] active:scale-95"
+            className="px-5 py-2.5 text-sm font-semibold bg-white hover:bg-white/90 text-[#0a0b0e] rounded-full transition-all duration-200 active:scale-95"
           >
             Get Moonlight
           </Link>

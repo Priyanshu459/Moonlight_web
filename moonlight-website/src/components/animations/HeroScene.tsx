@@ -5,7 +5,7 @@ import { siteConfig } from "@/lib/config";
 import { PhoneMockup } from "@/components/ui/mockups/PhoneMockup";
 import { ChatMockup } from "@/components/ui/mockups/ChatMockup";
 import { OrbitSystem } from "@/components/ui/OrbitSystem";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShieldCheck } from "lucide-react";
 import { ModelNodeIcon, InferenceStreamIcon, DeviceBoundaryIcon } from "@/components/ui/MoonlightIcons";
 
 export function HeroScene() {
@@ -30,35 +30,35 @@ export function HeroScene() {
   };
 
   return (
-    <section className="relative pt-32 pb-24 overflow-hidden hero-gradient border-b border-white/5 min-h-[90vh] flex items-center">
+    <section className="relative overflow-hidden hero-gradient min-h-[92svh] flex items-center pt-28 pb-20 lg:pt-32">
       {/* Background Noise */}
       <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none mix-blend-overlay"></div>
       
       <div className="container-page relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-8">
+        <div className="grid items-center gap-14 lg:grid-cols-[1.03fr_0.97fr] lg:gap-10">
           
           {/* Typography / Copy side */}
           <motion.div 
-            className="lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left z-20"
+            className="flex flex-col items-center lg:items-start text-center lg:text-left z-20"
             variants={containerVars}
             initial="hidden"
             animate="visible"
           >
-            <motion.div variants={itemVars} className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-8 tracking-wide uppercase">
+            <motion.div variants={itemVars} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-3.5 py-2 text-[11px] font-semibold tracking-[0.12em] text-white/70 mb-8 uppercase backdrop-blur-xl">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
               </span>
-              MOONLIGHT AI
+              Private AI for Android
             </motion.div>
             
-            <motion.h1 variants={itemVars} className="text-display-lg text-white mb-6 tracking-tight leading-[1.05]">
-              Private AI.<br />
-              <span className="gradient-text">Running on your device.</span>
+            <motion.h1 variants={itemVars} className="hero-title text-white mb-6">
+              The AI assistant<br />
+              <span className="gradient-text">that stays with you.</span>
             </motion.h1>
             
-            <motion.p variants={itemVars} className="text-lg text-white/60 mb-10 max-w-lg leading-relaxed">
-              Run capable AI models locally, keep conversations on-device, and continue working without an internet connection after your models are installed.
+            <motion.p variants={itemVars} className="text-lg text-white/55 mb-9 max-w-xl leading-8">
+              Run capable language models directly on your Android device. Your conversations stay local, and your AI keeps working after the internet drops.
             </motion.p>
             
             <motion.div variants={itemVars} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
@@ -70,25 +70,30 @@ export function HeroScene() {
                   Get Moonlight
                 </a>
               ) : (
-                <div className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 bg-white/5 border border-white/10 text-white/60 font-semibold rounded-2xl cursor-not-allowed">
-                  Coming soon to Google Play
-                </div>
+                <a href="/download" className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-[#0a0b0e] hover:bg-white/90 font-semibold rounded-full transition-all shadow-[0_12px_40px_rgba(255,255,255,0.1)]">
+                  Join the Google Play launch <ArrowRight size={16} />
+                </a>
               )}
               <a
                 href="/how-it-works"
-                className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 bg-transparent hover:bg-white/5 border border-white/10 text-white font-medium rounded-2xl transition-colors group"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3.5 bg-transparent hover:bg-white/5 border border-white/10 text-white font-medium rounded-full transition-colors group"
               >
                 See how it works
                 <ArrowRight size={16} className="text-white/50 group-hover:text-white transition-colors group-hover:translate-x-1 duration-300" />
               </a>
             </motion.div>
+            <motion.div variants={itemVars} className="mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-white/38 lg:justify-start">
+              <span className="inline-flex items-center gap-1.5"><ShieldCheck size={14} className="text-emerald-400" /> No account required</span>
+              <span>No analytics</span>
+              <span>No cloud chat history</span>
+            </motion.div>
           </motion.div>
 
           {/* Cinematic Visualization Side */}
-          <div className="lg:w-1/2 w-full flex justify-center relative min-h-[500px]">
+          <div className="w-full flex justify-center relative min-h-[520px] lg:min-h-[600px]">
             {/* The Orbit System acting as a halo behind the device */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 scale-[0.6] sm:scale-100 opacity-60">
-              <OrbitSystem size={500} />
+              <OrbitSystem size={540} />
             </div>
             
             {/* Architectural Nodes floating around device */}
@@ -127,7 +132,7 @@ export function HeroScene() {
             )}
 
             {/* The Device */}
-            <div className="relative z-20 w-full max-w-[320px]">
+            <div className="relative z-20 w-full max-w-[300px] sm:max-w-[320px]">
               <PhoneMockup animated>
                 <ChatMockup />
               </PhoneMockup>

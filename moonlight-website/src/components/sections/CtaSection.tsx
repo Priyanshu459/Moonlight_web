@@ -24,7 +24,7 @@ export function CtaSection() {
 
           <div className="relative z-10 flex flex-col items-center text-center px-6 py-20 gap-8">
             <div className="inline-block px-3 py-1 text-xs font-semibold uppercase tracking-widest text-[var(--accent)] bg-[var(--accent-muted)] rounded-full border border-[var(--accent)]/20">
-              Available Now
+              {siteConfig.playStoreUrl ? "Available on Google Play" : "Preparing for Google Play"}
             </div>
             <div>
               <h2
@@ -56,7 +56,7 @@ export function CtaSection() {
                   id="cta-section-primary"
                   className="inline-flex items-center gap-2 px-7 py-4 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold rounded-2xl transition-all duration-200 hover:shadow-xl hover:shadow-[var(--accent-glow)] active:scale-95"
                 >
-                  Get Moonlight
+                  Join the launch
                   <ArrowRight size={16} />
                 </Link>
               )}

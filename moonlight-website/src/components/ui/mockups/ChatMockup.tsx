@@ -30,7 +30,7 @@ export function ChatMockup() {
             <div className="text-xs font-semibold text-white">Phi-3 Mini</div>
             <div className="text-[9px] text-white/50 flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-              Running locally ? 19.4 t/s
+              Running locally · 19.4 t/s
             </div>
           </div>
         </div>
