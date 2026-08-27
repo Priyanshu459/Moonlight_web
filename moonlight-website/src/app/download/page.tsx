@@ -51,7 +51,7 @@ export default function DownloadPage() {
                   <div className="flex items-start gap-3 text-left p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 max-w-md">
                     <Info size={16} className="text-amber-400 shrink-0 mt-0.5" />
                     <p className="text-xs text-amber-400/90 leading-relaxed">
-                      Moonlight AI is currently in Beta testing and is preparing for a public Google Play release.
+                      Moonlight AI version {siteConfig.appVersion} is being prepared for its Google Play listing.
                     </p>
                   </div>
                 </div>
@@ -134,7 +134,7 @@ export default function DownloadPage() {
         <div className="mt-8 flex items-start gap-3 p-5 rounded-2xl bg-white/5 border border-white/10 max-w-3xl mx-auto">
           <AlertTriangle size={20} className="text-white/50 shrink-0" />
           <p className="text-sm text-white/60 leading-relaxed">
-            <strong className="text-white font-semibold">Important note on RAM:</strong> Language models must be loaded into your device&apos;s active memory (RAM). If your device has 4 GB of RAM, you physically cannot run a 4.5 GB model. Moonlight provides smaller models (like Phi-3 Mini) specifically for memory-constrained devices.
+            <strong className="text-white font-semibold">Important note on RAM:</strong> Language models must fit within your device&apos;s available memory. Choose a smaller quantized model such as Llama 3.2 1B when working with a memory-constrained phone.
           </p>
         </div>
       </div>

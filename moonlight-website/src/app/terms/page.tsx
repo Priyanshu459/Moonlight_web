@@ -42,8 +42,8 @@ export default function TermsPage() {
             <li>On-device AI inference using locally installed GGUF models</li>
             <li>A Model Store for downloading compatible AI models from Hugging Face</li>
             <li>Local conversation storage and memory features</li>
-            <li>Voice dictation, camera capture, and OCR capabilities</li>
-            <li>Local knowledge graph and workspace features</li>
+            <li>Optional Android system voice input and text-file attachments</li>
+            <li>Local memory and separate workspace features</li>
           </ul>
 
           <h2>3. User Responsibilities</h2>
@@ -152,15 +152,7 @@ export default function TermsPage() {
             there is no account to terminate. Uninstalling the App removes all locally stored data.
           </p>
 
-          <h2>14. Governing Law</h2>
-          <p>
-            <em>
-              [Developer note: Insert the applicable governing law jurisdiction here before publishing. 
-              Legal review recommended.]
-            </em>
-          </p>
-
-          <h2>15. Contact</h2>
+          <h2>14. Contact</h2>
           <p>
             For questions about these Terms of Service, please contact:{" "}
             <a href={`mailto:${siteConfig.supportEmail}`}>{siteConfig.supportEmail}</a>

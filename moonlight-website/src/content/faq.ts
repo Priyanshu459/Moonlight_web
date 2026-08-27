@@ -34,15 +34,15 @@ export const faqCategories: FaqCategory[] = [
     questions: [
       {
         q: "Where do the models come from?",
-        a: "Moonlight downloads verified GGUF models from Hugging Face. The app acts as a secure download manager that verifies SHA-256 checksums before installing the models.",
+        a: "Moonlight downloads compatible GGUF models directly from Hugging Face over HTTPS. Repository URLs are checked and the app prefers mobile-friendly quantizations when selecting a file.",
       },
       {
         q: "How much storage space do I need?",
-        a: "Model sizes vary significantly. A small model like Phi-3 Mini requires around 2.2 GB, while a larger model like Llama 3 8B requires around 4.5 GB. Ensure you have enough free storage on your device.",
+        a: "Model sizes vary. The Model Store shows the approximate size before download; for example, Llama 3.2 1B and Qwen 2.5 1.5B are around 1.3 GB and 1.1 GB in the listed quantizations.",
       },
       {
         q: "Can I use any GGUF model?",
-        a: "Moonlight currently supports a curated list of models optimized for mobile devices (usually Q4_K_M quantization). Support for sideloading custom GGUF models is planned for a future update.",
+        a: "Moonlight accepts compatible Hugging Face repository URLs or direct .gguf links. Model compatibility and memory use depend on your device and the chosen quantization.",
       }
     ]
   },
@@ -66,7 +66,7 @@ export const faqCategories: FaqCategory[] = [
     questions: [
       {
         q: "Does my data leave my phone?",
-        a: "No. Your prompts and conversations are processed strictly on your device using llama.cpp and stored in a local SQLite database. Moonlight does not send your chats to any cloud server.",
+        a: "Your prompts and conversations are processed on your device using llama.cpp and stored locally with MMKV. Model discovery and downloads connect to Hugging Face, but Moonlight does not include chat content in those requests.",
       },
       {
         q: "Do you collect analytics?",
@@ -74,7 +74,7 @@ export const faqCategories: FaqCategory[] = [
       },
       {
         q: "How secure are my local chats?",
-        a: "Your chats are stored within the app's sandboxed storage. You can additionally enable Biometric Lock (fingerprint/face) to require authentication before opening the app.",
+        a: "Chats are stored in Android's private app storage. They are not synced to Moon Knight Studio or another cloud service, and Android cloud backup is disabled for the app.",
       }
     ]
   },
@@ -84,11 +84,11 @@ export const faqCategories: FaqCategory[] = [
     questions: [
       {
         q: "The model won't load / Insufficient Memory",
-        a: "If a model fails to load or crashes immediately, your device likely does not have enough free RAM to hold the model weights. Try closing other apps, or download a smaller model (e.g., Phi-3 Mini instead of Llama 3 8B).",
+        a: "If a model fails to load or crashes immediately, your device may not have enough free RAM for its weights and context. Close other apps or choose a smaller model such as Llama 3.2 1B.",
       },
       {
         q: "Model download failed / paused indefinitely",
-        a: "Check your internet connection and ensure you have enough free storage space. If a download is stuck, you can cancel it in the Model Store and try again. The app supports HTTP resume, so it will attempt to pick up where it left off.",
+        a: "Check your internet connection and free storage. You can cancel a download in the Models screen and try again.",
       },
       {
         q: "Generation stopped suddenly",

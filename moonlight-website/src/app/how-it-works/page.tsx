@@ -1,7 +1,5 @@
 "use client";
 
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import { motion } from "framer-motion";
 import { ModelNodeIcon, InferenceStreamIcon, DeviceBoundaryIcon, DownloadVerifyInstallIcon } from "@/components/ui/MoonlightIcons";
 
@@ -18,8 +16,6 @@ export default function HowItWorksPage() {
 
   return (
     <div className="min-h-screen bg-[#0A0B0E] flex flex-col font-sans">
-      <Navbar />
-
       <main className="flex-1 pt-32 pb-24 relative overflow-hidden">
         
         {/* Background Grid */}
@@ -77,12 +73,12 @@ export default function HowItWorksPage() {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4 relative z-10">Acquiring the Intelligence</h3>
                 <p className="text-white/60 mb-6 relative z-10">
-                  Before Moonlight can think, it needs a brain. Models are downloaded from verified Hugging Face repositories directly to your device&apos;s internal storage.
+                  Before Moonlight can think, it needs a model. Compatible GGUF files are downloaded from Hugging Face directly to your device&apos;s private storage over HTTPS.
                 </p>
                 <div className="bg-[#0A0B0E] p-4 rounded-xl border border-white/5 text-sm font-mono text-emerald-400 flex flex-col gap-2 relative z-10 shadow-inner">
                   <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.1 }}>&gt; Connecting to huggingface.co</motion.span>
                   <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.3 }}>&gt; Downloading weights (Q4_K_M)</motion.span>
-                  <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.5 }}>&gt; Verifying SHA-256 signature</motion.span>
+                  <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.5 }}>&gt; Saving GGUF to private app storage</motion.span>
                   <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.7 }} className="text-indigo-400">&gt; Saved to local storage</motion.span>
                 </div>
               </div>
@@ -186,7 +182,6 @@ export default function HowItWorksPage() {
         </div>
       </main>
 
-      <Footer />
     </div>
   );
 }

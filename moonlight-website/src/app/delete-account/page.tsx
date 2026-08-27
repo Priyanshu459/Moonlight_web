@@ -65,10 +65,8 @@ export default function DeleteAccountPage() {
                   You can delete specific data within the app without removing everything:
                 </p>
                 <ul className="text-sm text-[var(--text-secondary)] space-y-1.5 list-disc list-inside">
-                  <li>Delete individual conversations from the conversation list</li>
-                  <li>Delete workspaces and their associated documents</li>
-                  <li>Delete memories from the settings or workspace view</li>
-                  <li>Remove installed AI models via the Storage Manager in Settings</li>
+                  <li>Delete individual memories or clear all memories from Settings</li>
+                  <li>Delete downloaded AI models from the Models screen</li>
                 </ul>
               </div>
             </div>
@@ -95,8 +93,7 @@ export default function DeleteAccountPage() {
                   <li>Tap <strong className="text-[var(--text-primary)]">Clear Storage</strong></li>
                 </ol>
                 <p className="text-xs text-[var(--text-tertiary)] mt-3">
-                  This will permanently delete all conversations, memories, workspaces, and app preferences. 
-                  Downloaded AI model files may need to be deleted separately if stored outside the app sandbox.
+                  This permanently deletes conversations, memories, workspaces, preferences, and models stored in the app&apos;s private directory.
                 </p>
               </div>
             </div>
@@ -131,23 +128,18 @@ export default function DeleteAccountPage() {
           <div className="space-y-3">
             {[
               {
-                item: "Conversations & messages",
-                location: "Local device SQLite database",
-                notes: "Deleted when you clear app data or uninstall",
-              },
-              {
-                item: "Memories & knowledge graph",
-                location: "Local device SQLite database",
+                item: "Conversations, memories & workspaces",
+                location: "Local MMKV storage",
                 notes: "Deleted when you clear app data or uninstall",
               },
               {
                 item: "Downloaded AI models",
                 location: "App documents directory on device",
-                notes: "Removed via Storage Manager in app, or by clearing app data",
+                notes: "Removed in Models, by clearing app data, or on uninstall",
               },
               {
                 item: "App preferences & settings",
-                location: "Android SharedPreferences & Secure Storage",
+                location: "Local MMKV storage",
                 notes: "Deleted when you clear app data or uninstall",
               },
               {

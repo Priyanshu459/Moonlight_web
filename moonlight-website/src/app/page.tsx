@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, BrainCircuit, Download, LockKeyhole, Plane, ShieldCheck, Smartphone, WifiOff } from "lucide-react";
 import { HeroScene } from "@/components/animations/HeroScene";
 import { PrivacySection } from "@/components/sections/PrivacySection";
@@ -27,7 +28,7 @@ const capabilities = [
 
 const steps = [
   { number: "01", icon: Download, title: "Choose a model", copy: "Browse compatible models and download the one that fits your device." },
-  { number: "02", icon: ShieldCheck, title: "Verify and install", copy: "Moonlight verifies the model file before preparing it for local use." },
+  { number: "02", icon: ShieldCheck, title: "Download securely", copy: "Moonlight downloads the selected GGUF file directly from Hugging Face over HTTPS." },
   { number: "03", icon: Smartphone, title: "Chat on your device", copy: "Prompts and responses are processed locally with no cloud inference required." },
 ];
 
@@ -97,6 +98,33 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-premium" aria-labelledby="app-preview-heading">
+        <div className="container-page">
+          <div className="section-intro">
+            <p className="eyebrow">The real Android experience</p>
+            <h2 id="app-preview-heading">Simple tools.<br /><span className="text-white/42">A clear privacy boundary.</span></h2>
+            <p>Chat, choose a phone-friendly model, and control memory and response settings from a focused interface designed for on-device work.</p>
+          </div>
+
+          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              ["/app-screens/home.jpeg", "Home", "Start local chats and reusable tasks."],
+              ["/app-screens/tools.jpeg", "Tools", "Move between chat, models, and settings."],
+              ["/app-screens/models.jpeg", "Models", "Choose and download compatible GGUF models."],
+              ["/app-screens/settings.jpeg", "Settings", "Control generation, memory, privacy, and storage."],
+            ].map(([src, title, copy]) => (
+              <figure key={title} className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.025] p-2 shadow-2xl shadow-black/30">
+                <Image src={src} alt={`Moonlight AI ${title} screen`} width={716} height={1600} className="h-auto w-full rounded-[1.55rem]" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" />
+                <figcaption className="px-3 pb-4 pt-5">
+                  <strong className="block text-sm text-white">{title}</strong>
+                  <span className="mt-1 block text-xs leading-5 text-white/42">{copy}</span>
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </section>

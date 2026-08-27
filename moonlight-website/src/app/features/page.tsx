@@ -1,133 +1,62 @@
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { PhoneMockup } from "@/components/ui/mockups/PhoneMockup";
-import { ChatMockup } from "@/components/ui/mockups/ChatMockup";
-import { ModelStoreMockup } from "@/components/ui/mockups/ModelStoreMockup";
-import { OrbitSystem } from "@/components/ui/OrbitSystem";
-import { comingSoonFeatures } from "@/content/features";
+import type { Metadata } from "next";
+import Image from "next/image";
+import { BrainCircuit, FileText, MessagesSquare, Mic, SlidersHorizontal, WifiOff } from "lucide-react";
 
-export const metadata = {
-  title: "Features | Moonlight AI",
-  description: "Explore the capabilities of Moonlight AI, the private local-first AI assistant for Android.",
+export const metadata: Metadata = {
+  title: "Features",
+  description: "Explore Moonlight AI's verified on-device chat, model, memory, file, voice, and workspace features for Android.",
 };
+
+const features = [
+  { icon: BrainCircuit, title: "On-device inference", copy: "Compatible quantized GGUF models run through llama.rn on your phone's CPU/GPU. Prompts and responses are not sent to a cloud AI API." },
+  { icon: MessagesSquare, title: "Streaming local chat", copy: "Watch responses appear token by token, with conversation history saved privately for each workspace." },
+  { icon: WifiOff, title: "Offline after setup", copy: "Once a model has been downloaded, everyday chat does not need an internet connection." },
+  { icon: SlidersHorizontal, title: "Model and response controls", copy: "Switch downloaded models and tune response style, temperature, Top P, Top K, system prompt, and memory." },
+  { icon: FileText, title: "Text-file context", copy: "Select text from a supported file and use it in the local chat context without uploading it to Moon Knight Studio." },
+  { icon: Mic, title: "Optional voice input", copy: "Use Android's system speech recognition. Moonlight receives recognized text and does not record or store raw audio." },
+];
+
+const screens = [
+  ["/app-screens/home.jpeg", "Home and suggested tasks"],
+  ["/app-screens/models.jpeg", "Model Store"],
+  ["/app-screens/settings.jpeg", "Generation and memory settings"],
+];
 
 export default function FeaturesPage() {
   return (
-    <div className="min-h-screen bg-[#0A0B0E] flex flex-col">
-      <Navbar />
+    <div className="pb-24 pt-32">
+      <div className="container-page">
+        <header className="max-w-3xl">
+          <p className="eyebrow">Version 1.0 for Android</p>
+          <h1 className="mt-5 text-display-lg text-white">Private AI, with the controls visible.</h1>
+          <p className="mt-6 text-lg leading-8 text-white/55">Moonlight is built for focused local work: download the model that fits your phone, chat without cloud inference, and decide what remains in local memory.</p>
+        </header>
 
-      <main className="flex-1 pt-32 pb-24">
-        
-        {/* Header */}
-        <div className="container-page mb-24">
-          <div className="max-w-3xl">
-            <h1 className="text-display-lg text-white mb-6 tracking-tight">Intelligence, uncompromised.</h1>
-            <p className="text-xl text-white/60">
-              A serious environment for running language models directly on Android.
-            </p>
+        <section className="mt-20 grid gap-4 md:grid-cols-2 lg:grid-cols-3" aria-label="Moonlight AI features">
+          {features.map(({ icon: Icon, title, copy }) => (
+            <article key={title} className="premium-card min-h-0">
+              <div className="feature-icon"><Icon size={20} aria-hidden="true" /></div>
+              <h2 className="mt-7 text-xl font-semibold text-white">{title}</h2>
+              <p className="mt-3 text-sm leading-7 text-white/48">{copy}</p>
+            </article>
+          ))}
+        </section>
+
+        <section className="mt-28 border-t border-white/8 pt-20" aria-labelledby="screens-heading">
+          <div className="max-w-2xl">
+            <p className="eyebrow">Inside the app</p>
+            <h2 id="screens-heading" className="mt-5 text-display-md text-white">The actual Moonlight interface.</h2>
           </div>
-        </div>
-
-        {/* Editorial Stories */}
-        <div className="container-page flex flex-col gap-32">
-          
-          {/* 01 LOCAL INFERENCE */}
-          <section className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-1/2">
-              <div className="text-sm font-bold text-indigo-400 tracking-widest mb-4">01 — LOCAL INFERENCE</div>
-              <h2 className="text-display-md text-white mb-6">Run compatible AI models directly on Android.</h2>
-              <p className="text-lg text-white/60 mb-6">
-                Moonlight brings the power of `llama.cpp` to your pocket. Connect with local GGUF models running natively on your device CPU and GPU.
-              </p>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 mt-2 rounded-full bg-indigo-500"></div>
-                  <span className="text-white/80">Support for 4-bit and 8-bit quantization</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 mt-2 rounded-full bg-indigo-500"></div>
-                  <span className="text-white/80">Zero internet required for generation</span>
-                </li>
-              </ul>
-            </div>
-            <div className="lg:w-1/2 flex justify-center relative">
-              <OrbitSystem size={350} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-30 -z-10" />
-              <PhoneMockup>
-                <div className="flex flex-col h-full bg-[#0d0e12] items-center justify-center p-6 text-center">
-                   <div className="w-16 h-16 rounded-2xl bg-indigo-500/20 border border-indigo-500/40 flex items-center justify-center mb-6">
-                      <span className="text-indigo-400 font-bold">GGUF</span>
-                   </div>
-                   <h3 className="text-white font-semibold mb-2">llama.cpp Engine</h3>
-                   <p className="text-white/50 text-sm">Native Android backend compiling the model directly into memory.</p>
-                </div>
-              </PhoneMockup>
-            </div>
-          </section>
-
-          {/* 02 MODEL STORE */}
-          <section className="flex flex-col lg:flex-row-reverse items-center gap-16">
-            <div className="lg:w-1/2">
-              <div className="text-sm font-bold text-indigo-400 tracking-widest mb-4">02 — MODEL STORE</div>
-              <h2 className="text-display-md text-white mb-6">Choose your intelligence.</h2>
-              <p className="text-lg text-white/60 mb-6">
-                Download verified models directly from Hugging Face. The Model Store manages your local catalog safely.
-              </p>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 mt-2 rounded-full bg-indigo-500"></div>
-                  <span className="text-white/80">SHA-256 verification on download</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 mt-2 rounded-full bg-indigo-500"></div>
-                  <span className="text-white/80">Automatic storage management</span>
-                </li>
-              </ul>
-            </div>
-            <div className="lg:w-1/2 flex justify-center">
-              <PhoneMockup>
-                <ModelStoreMockup />
-              </PhoneMockup>
-            </div>
-          </section>
-
-          {/* 03 PRIVATE CONVERSATIONS */}
-          <section className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-1/2">
-              <div className="text-sm font-bold text-indigo-400 tracking-widest mb-4">03 — PRIVATE CONVERSATIONS</div>
-              <h2 className="text-display-md text-white mb-6">A beautiful interface for your ideas.</h2>
-              <p className="text-lg text-white/60 mb-6">
-                Interact with your models using an elegant, fluid chat interface designed for Android. Everything is saved strictly on-device.
-              </p>
-            </div>
-            <div className="lg:w-1/2 flex justify-center">
-              <PhoneMockup>
-                <ChatMockup />
-              </PhoneMockup>
-            </div>
-          </section>
-
-          {/* ROADMAP / IN DEVELOPMENT */}
-          <section className="pt-24 border-t border-white/5 mt-16">
-            <h2 className="text-2xl font-bold text-white mb-2">In Development</h2>
-            <p className="text-white/50 mb-12">Features currently being built in the Moonlight repository. Not yet available in the production APK.</p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {comingSoonFeatures.map(feat => (
-                <div key={feat.id} className="p-6 rounded-2xl bg-white/[0.02] border border-white/5">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-white/10 text-white/60 uppercase">Roadmap</span>
-                    <h3 className="font-semibold text-white">{feat.title}</h3>
-                  </div>
-                  <p className="text-sm text-white/50">{feat.description}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-        </div>
-      </main>
-
-      <Footer />
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {screens.map(([src, label]) => (
+              <figure key={label} className="rounded-[2rem] border border-white/10 bg-white/[0.025] p-2">
+                <Image src={src} alt={`Moonlight AI ${label} screenshot`} width={716} height={1600} className="h-auto w-full rounded-[1.55rem]" sizes="(max-width: 768px) 100vw, 33vw" />
+                <figcaption className="px-4 py-5 text-sm font-medium text-white/70">{label}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import { faqCategories } from "@/content/faq";
 import { ChevronDown, Search, Mail, BookOpen } from "lucide-react";
 import { siteConfig } from "@/lib/config";
@@ -15,7 +13,6 @@ export default function SupportPage() {
   
   return (
     <div className="min-h-screen bg-[#0A0B0E] flex flex-col">
-      <Navbar />
 
       <main className="flex-1 pt-32 pb-24">
         
@@ -102,7 +99,6 @@ export default function SupportPage() {
 
       </main>
 
-      <Footer />
     </div>
   );
 }

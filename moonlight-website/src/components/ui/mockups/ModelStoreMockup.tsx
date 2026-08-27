@@ -1,6 +1,6 @@
 "use client";
 
-import { Download, CheckCircle2, Search, ArrowLeft, ShieldCheck, Database, Zap } from "lucide-react";
+import { Download, CheckCircle2, Search, ArrowLeft, Database, Zap } from "lucide-react";
 import { motion } from "framer-motion";
 
 export function ModelStoreMockup() {
@@ -25,11 +25,11 @@ export function ModelStoreMockup() {
           <div className="bg-[#1a1b20] border border-white/5 rounded-xl p-3 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center">
-                <span className="text-indigo-400 text-xs font-bold">P3</span>
+                <span className="text-indigo-400 text-xs font-bold">L1</span>
               </div>
               <div>
-                <div className="text-xs font-semibold text-white">Phi-3 Mini</div>
-                <div className="text-[10px] text-white/50">2.2 GB • Offline Ready</div>
+                <div className="text-xs font-semibold text-white">Llama 3.2 1B</div>
+                <div className="text-[10px] text-white/50">1.3 GB • Offline Ready</div>
               </div>
             </div>
             <div className="w-6 h-6 rounded-full bg-green-500/10 flex items-center justify-center">
@@ -54,13 +54,13 @@ export function ModelStoreMockup() {
                   <span className="text-emerald-400 text-xs font-bold z-10">D1</span>
                 </div>
                 <div>
-                  <div className="text-xs font-semibold text-white">DeepSeek R1 7B</div>
+                  <div className="text-xs font-semibold text-white">Qwen 2.5 1.5B</div>
                   <div className="text-[10px] text-white/50 flex items-center gap-1">
                     <motion.span 
                       animate={{ opacity: [0.5, 1, 0.5] }} 
                       transition={{ duration: 1.5, repeat: Infinity }}
                     >
-                      Verifying SHA-256 Checksum...
+                      Downloading over HTTPS...
                     </motion.span>
                   </div>
                 </div>
@@ -75,10 +75,7 @@ export function ModelStoreMockup() {
                   <span>Download</span>
                </div>
                <div className="h-[1px] flex-1 bg-white/10 mx-2" />
-               <div className="flex flex-col items-center gap-1 text-indigo-400">
-                  <ShieldCheck size={10} />
-                  <span>Verify</span>
-               </div>
+               <div className="flex flex-col items-center gap-1 text-indigo-400"><Database size={10} /><span>Save</span></div>
                <div className="h-[1px] flex-1 bg-white/10 mx-2" />
                <div className="flex flex-col items-center gap-1">
                   <Database size={10} />
@@ -100,9 +97,8 @@ export function ModelStoreMockup() {
           <div className="text-[10px] font-semibold text-white/40 uppercase tracking-widest mb-2 px-1">Available Models</div>
           <div className="bg-[#1a1b20] border border-white/5 rounded-xl flex flex-col divide-y divide-white/5">
             {[
-              { id: 'G2', name: 'Gemma 2 9B', size: '5.4 GB', color: 'cyan', author: 'Google' },
-              { id: 'Q2', name: 'Qwen 2 7B', size: '4.4 GB', color: 'purple', author: 'Alibaba' },
-              { id: 'L1', name: 'LLaVA 1.6 7B', size: '4.8 GB', color: 'rose', author: 'LLaVA Team' },
+              { id: 'Q2', name: 'Qwen 2.5 1.5B', size: '1.1 GB', color: 'purple', author: 'Alibaba' },
+              { id: 'L1', name: 'Llama 3.2 1B', size: '1.3 GB', color: 'cyan', author: 'Meta AI' },
             ].map((model) => (
               <div key={model.id} className="p-3 flex items-center justify-between">
                 <div className="flex items-center gap-3">

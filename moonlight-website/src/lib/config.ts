@@ -19,8 +19,8 @@ export const siteConfig = {
   playStoreComingSoon: true,
 
   // --- Contact ---
-  supportEmail: "support@moonlight-ai.pages.dev",
-  privacyEmail: "privacy@moonlight-ai.pages.dev",
+  supportEmail: "priyanshuabhi56@gmail.com",
+  privacyEmail: "priyanshuabhi56@gmail.com",
 
   // --- Social ---
   // TODO: Add actual social links when available
@@ -28,12 +28,13 @@ export const siteConfig = {
   github: null as string | null,
 
   // --- Legal ---
-  lastUpdated: "August 19, 2026",
+  lastUpdated: "August 27, 2026",
   copyrightYear: "2026",
-  companyName: "Moonlight AI",
+  companyName: "Moon Knight Studio",
 
   // --- App Details ---
-  appVersion: "0.9.0",
+  appVersion: "1.0",
+  packageId: "com.moonknightstudio.moonlightai",
   minAndroidVersion: "Android 8.0 (API 26)",
   
   // --- Meta ---
