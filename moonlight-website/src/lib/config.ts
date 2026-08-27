@@ -19,8 +19,8 @@ export const siteConfig = {
   playStoreComingSoon: true,
 
   // --- Contact ---
-  supportEmail: "priyanshuabhi56@gmail.com",
-  privacyEmail: "priyanshuabhi56@gmail.com",
+  supportEmail: "priyanshu09016@gmail.com",
+  privacyEmail: "priyanshu09016@gmail.com",
 
   // --- Social ---
   // TODO: Add actual social links when available

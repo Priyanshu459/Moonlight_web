@@ -40,7 +40,7 @@ export default function SupportPage() {
                 <Mail size={20} className="text-violet-400" />
               </div>
               <h3 className="text-lg font-bold text-white mb-2">Contact Support</h3>
-              <p className="text-white/50 text-sm">Reach out to our engineering team directly for advanced troubleshooting.</p>
+              <p className="text-white/50 text-sm">Email us directly at <span className="text-violet-300">{siteConfig.supportEmail}</span>.</p>
             </a>
           </div>
         </div>

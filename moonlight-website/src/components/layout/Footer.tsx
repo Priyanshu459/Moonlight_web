@@ -15,7 +15,7 @@ const footerLinks = {
   ],
   Support: [
     { href: "/support", label: "Help centre" },
-    { href: `mailto:${siteConfig.supportEmail}`, label: "Contact support", external: true },
+    { href: `mailto:${siteConfig.supportEmail}`, label: siteConfig.supportEmail, external: true },
   ],
 };
 
