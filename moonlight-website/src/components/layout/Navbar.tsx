@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
-import { Menu, X, Moon } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { href: "/features", label: "Product" },
@@ -26,7 +27,7 @@ export function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "glass border-b border-white/5"
-          : "bg-transparent"
+          : "bg-[#07080c]/90 border-b border-white/5"
       }`}
       role="banner"
     >
@@ -40,8 +41,8 @@ export function Navbar() {
           className="flex items-center gap-2.5 group"
           aria-label="Moonlight AI — home"
         >
-          <div className="w-8 h-8 rounded-full bg-white text-[#0a0b0e] flex items-center justify-center shadow-lg shadow-white/10 group-hover:shadow-white/20 transition-shadow">
-            <Moon size={16} strokeWidth={2.5} />
+          <div className="w-8 h-8 rounded-full bg-transparent text-white flex items-center justify-center shadow-lg shadow-white/10 group-hover:shadow-white/20 transition-shadow">
+            <Image src="/moon-crescent.svg" alt="" width={32} height={32} />
           </div>
           <span className="text-sm font-semibold text-[var(--text-primary)] tracking-tight">
             Moonlight AI
@@ -66,7 +67,7 @@ export function Navbar() {
           <Link
             href="/download"
             id="nav-cta"
-            className="px-5 py-2.5 text-sm font-semibold bg-white hover:bg-white/90 text-[#0a0b0e] rounded-full transition-all duration-200 active:scale-95"
+            className="px-5 py-2.5 text-sm font-semibold bg-white hover:bg-white/90 text-[#0a0b0e] rounded-md transition-all duration-200 active:scale-95"
           >
             Get Moonlight
           </Link>
@@ -75,7 +76,7 @@ export function Navbar() {
         {/* Mobile hamburger */}
         <button
           id="mobile-menu-toggle"
-          className="md:hidden p-2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+          className="md:hidden p-3 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
           onClick={() => setIsMobileOpen(!isMobileOpen)}
           aria-label={isMobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={isMobileOpen}

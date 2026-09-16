@@ -44,6 +44,7 @@ export default function TermsPage() {
             <li>Local conversation storage and memory features</li>
             <li>Optional Android system voice input and text-file attachments</li>
             <li>Local memory and separate workspace features</li>
+            <li>Optional LM Studio and cloud-provider connections using your credentials; their terms, data practices and charges apply</li>
           </ul>
 
           <h2>3. User Responsibilities</h2>

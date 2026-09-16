@@ -7,11 +7,11 @@ export const siteConfig = {
   name: "Moonlight AI",
   tagline: "AI that stays with you.",
   description:
-    "Moonlight AI is a local-first AI assistant that runs compatible AI models directly on your Android device — designed around on-device inference, privacy, and offline-capable intelligence.",
-  shortDescription: "Private. Local. On-device AI.",
+    "Moonlight AI brings phone models, your LM Studio computer and your choice of cloud into one Android app. Explore the 1.6.1 Glass preview.",
+  shortDescription: "Phone. Computer. Cloud. Your choice.",
 
   // --- URLs ---
-  url: "https://moonlight-ai.pages.dev",
+  url: "https://moonlight-ai-app.pages.dev",
   
   // --- Google Play ---
   // TODO: Replace with actual Play Store URL when published
@@ -28,14 +28,16 @@ export const siteConfig = {
   github: null as string | null,
 
   // --- Legal ---
-  lastUpdated: "August 27, 2026",
+  lastUpdated: "September 16, 2026",
   copyrightYear: "2026",
   companyName: "Moon Knight Studio",
 
   // --- App Details ---
-  appVersion: "1.0",
+  appVersion: "1.6.1 preview",
+  latestPreviewVersion: "1.6.1",
   packageId: "com.moonknightstudio.moonlightai",
-  minAndroidVersion: "Android 8.0 (API 26)",
+  previewPackageId: "com.moonknightstudio.moonlightai.preview",
+  minAndroidVersion: "Android 7.0 (API 24)",
   
   // --- Meta ---
   ogImage: "/og-image.png",

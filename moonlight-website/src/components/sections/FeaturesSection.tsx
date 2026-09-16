@@ -39,7 +39,7 @@ export function FeaturesSection() {
             <span className="gradient-text">your device.</span>
           </h2>
           <p className="text-[var(--text-secondary)] max-w-xl mx-auto leading-relaxed">
-            Every feature in Moonlight AI is designed to run locally — 
+            Every feature in Moonlight AI is designed to run locally —
             bringing capable AI to your Android device without requiring a constant cloud connection.
           </p>
         </div>
@@ -52,19 +52,51 @@ export function FeaturesSection() {
             return (
               <div
                 key={feature.id}
-                className="card-glow p-6 group"
+                className="card-glow p-6 group flex flex-col justify-between"
               >
-                <div
-                  className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-4 ${accent}`}
-                >
-                  <Icon size={18} />
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div
+                      className={`w-10 h-10 rounded-xl border flex items-center justify-center ${accent}`}
+                    >
+                      <Icon size={18} />
+                    </div>
+                    <span className={`text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-full border ${
+                      feature.status === "ALPHA"
+                        ? "bg-cyan-500/10 text-cyan-400 border-cyan-500/30"
+                        : "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+                    }`}>
+                      {feature.status}
+                    </span>
+                  </div>
+
+                  <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+                    {feature.description}
+                  </p>
                 </div>
-                <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-3">
-                  {feature.description}
-                </p>
+
+                {/* Contextual indicators */}
+                {feature.id === "three-themes" && (
+                  <div className="pt-3 border-t border-white/5 flex items-center gap-1.5 text-[11px] text-white/50">
+                    <span className="px-2 py-0.5 rounded bg-[#f5f2eb] text-[#2c2724] font-medium">Paper</span>
+                    <span className="px-2 py-0.5 rounded bg-[#1f2022] text-[#f0f0f2] font-mono">Mono</span>
+                    <span className="px-2 py-0.5 rounded bg-[#090b10] text-indigo-400 border border-indigo-500/30">Midnight</span>
+                  </div>
+                )}
+                {feature.id === "web-search-alpha" && (
+                  <div className="pt-3 border-t border-white/5 flex items-center gap-2 text-[11px] text-cyan-400/80">
+                    <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+                    <span>Provider web tools · Supported models</span>
+                  </div>
+                )}
+                {feature.id === "hardware-safety" && (
+                  <div className="pt-3 border-t border-white/5 flex items-center gap-2 text-[11px] text-emerald-400/80">
+                    <span>4 GB+ RAM check • &lt; 1.3 GiB cap</span>
+                  </div>
+                )}
               </div>
             );
           })}

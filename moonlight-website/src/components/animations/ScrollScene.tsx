@@ -184,7 +184,7 @@ export function ScrollScene() {
                         className="bg-transparent text-white/90 text-xs px-2 py-1.5"
                         style={{ opacity: uiOpacityResponse }}
                       >
-                        Privacy by Architecture: Chats stay on your device. It never touches a network.
+                        Phone mode processes chats locally. Connected modes send requests to your selected service.
                       </motion.div>
                       <motion.div className="flex items-center gap-1 px-2 mt-1" style={{ opacity: uiOpacityStreamFade }}>
                         <div className="w-1 h-3 rounded-sm bg-indigo-400/50 animate-pulse" />

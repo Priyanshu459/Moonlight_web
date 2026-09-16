@@ -1,146 +1,34 @@
 "use client";
-
-import { motion, useReducedMotion } from "framer-motion";
-import { siteConfig } from "@/lib/config";
-import { PhoneMockup } from "@/components/ui/mockups/PhoneMockup";
-import { ChatMockup } from "@/components/ui/mockups/ChatMockup";
-import { OrbitSystem } from "@/components/ui/OrbitSystem";
-import { ArrowRight, ShieldCheck } from "lucide-react";
-import { ModelNodeIcon, InferenceStreamIcon, DeviceBoundaryIcon } from "@/components/ui/MoonlightIcons";
-
+import Image from "next/image";
+import Link from "next/link";
+import { useRef, useState } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { ArrowDown, ArrowUpRight, Pause, Play } from "lucide-react";
 export function HeroScene() {
-  const prefersReducedMotion = useReducedMotion();
-  
-  // Animation variants
-  const containerVars = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.2 }
-    }
-  };
-  
-  const itemVars = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }
-    }
-  };
-
-  return (
-    <section className="relative overflow-hidden hero-gradient min-h-[92svh] flex items-center pt-28 pb-20 lg:pt-32">
-      {/* Background Noise */}
-      <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.03] pointer-events-none mix-blend-overlay"></div>
-      
-      <div className="container-page relative z-10">
-        <div className="grid items-center gap-14 lg:grid-cols-[1.03fr_0.97fr] lg:gap-10">
-          
-          {/* Typography / Copy side */}
-          <motion.div 
-            className="flex flex-col items-center lg:items-start text-center lg:text-left z-20"
-            variants={containerVars}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.div variants={itemVars} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.045] px-3.5 py-2 text-[11px] font-semibold tracking-[0.12em] text-white/70 mb-8 uppercase backdrop-blur-xl">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-              </span>
-              Private AI for Android
-            </motion.div>
-            
-            <motion.h1 variants={itemVars} className="hero-title text-white mb-6">
-              The AI assistant<br />
-              <span className="gradient-text">that stays with you.</span>
-            </motion.h1>
-            
-            <motion.p variants={itemVars} className="text-lg text-white/55 mb-9 max-w-xl leading-8">
-              Run capable language models directly on your Android device. Your conversations stay local, and your AI keeps working after the internet drops.
-            </motion.p>
-            
-            <motion.div variants={itemVars} className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-              {siteConfig.playStoreUrl ? (
-                <a
-                  href={siteConfig.playStoreUrl}
-                  className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-2xl transition-all hover:shadow-[0_0_30px_rgba(99,102,241,0.4)]"
-                >
-                  Get Moonlight
-                </a>
-              ) : (
-                <a href="/download" className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3.5 bg-white text-[#0a0b0e] hover:bg-white/90 font-semibold rounded-full transition-all shadow-[0_12px_40px_rgba(255,255,255,0.1)]">
-                  Join the Google Play launch <ArrowRight size={16} />
-                </a>
-              )}
-              <a
-                href="/how-it-works"
-                className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-3.5 bg-transparent hover:bg-white/5 border border-white/10 text-white font-medium rounded-full transition-colors group"
-              >
-                See how it works
-                <ArrowRight size={16} className="text-white/50 group-hover:text-white transition-colors group-hover:translate-x-1 duration-300" />
-              </a>
-            </motion.div>
-            <motion.div variants={itemVars} className="mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-white/38 lg:justify-start">
-              <span className="inline-flex items-center gap-1.5"><ShieldCheck size={14} className="text-emerald-400" /> No account required</span>
-              <span>No analytics</span>
-              <span>No cloud chat history</span>
-            </motion.div>
-          </motion.div>
-
-          {/* Cinematic Visualization Side */}
-          <div className="w-full flex justify-center relative min-h-[520px] lg:min-h-[600px]">
-            {/* The Orbit System acting as a halo behind the device */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 scale-[0.6] sm:scale-100 opacity-60">
-              <OrbitSystem size={540} />
-            </div>
-            
-            {/* Architectural Nodes floating around device */}
-            {!prefersReducedMotion && (
-              <>
-                <motion.div 
-                  className="absolute top-[15%] left-[5%] hidden md:flex flex-col items-center gap-2 z-10"
-                  initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1, duration: 1 }}
-                >
-                  <div className="w-10 h-10 rounded-full bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center backdrop-blur-sm">
-                    <ModelNodeIcon className="w-5 h-5 text-indigo-400" />
-                  </div>
-                  <div className="text-[9px] font-bold tracking-widest text-indigo-400 uppercase">Model</div>
-                </motion.div>
-                
-                <motion.div 
-                  className="absolute bottom-[20%] right-[5%] hidden md:flex flex-col items-center gap-2 z-10"
-                  initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 1.5, duration: 1 }}
-                >
-                  <div className="w-10 h-10 rounded-full bg-violet-500/10 border border-violet-500/30 flex items-center justify-center backdrop-blur-sm">
-                    <InferenceStreamIcon className="w-5 h-5 text-violet-400" />
-                  </div>
-                  <div className="text-[9px] font-bold tracking-widest text-violet-400 uppercase">Response</div>
-                </motion.div>
-
-                <motion.div 
-                  className="absolute top-[10%] right-[15%] hidden md:flex flex-col items-center gap-2 z-10"
-                  initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2, duration: 1 }}
-                >
-                  <div className="w-8 h-8 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center backdrop-blur-sm">
-                    <DeviceBoundaryIcon className="w-4 h-4 text-emerald-400" />
-                  </div>
-                  <div className="text-[9px] font-bold tracking-widest text-emerald-400 uppercase">Local</div>
-                </motion.div>
-              </>
-            )}
-
-            {/* The Device */}
-            <div className="relative z-20 w-full max-w-[300px] sm:max-w-[320px]">
-              <PhoneMockup animated>
-                <ChatMockup />
-              </PhoneMockup>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </section>
-  );
+  const ref = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
+  const [paused, setPaused] = useState(false);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], [0, 180]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [-9, 9]);
+  const still = reduced || paused;
+  return <section ref={ref} className={`lunar-hero ${still ? "lunar-still" : ""}`} aria-labelledby="lunar-title">
+    <div className="lunar-grain" aria-hidden="true" />
+    <div className="lunar-orbit lunar-orbit-one" aria-hidden="true" /><div className="lunar-orbit lunar-orbit-two" aria-hidden="true" />
+    <div className="container-page lunar-hero-grid"><div className="lunar-hero-copy">
+      <p className="lunar-eyebrow"><span /> THE GLASS CHAPTER · 1.6.1 PREVIEW</p>
+      <h1 id="lunar-title">A little light.<br />A limitless<br /><em>state of mind.</em></h1>
+      <p className="lunar-lede">Your phone. Your computer. Your choice of cloud.<br className="lunar-desktop-break" /> One beautiful space for everything on your mind.</p>
+      <div className="lunar-actions"><Link className="lunar-primary" href="/download">Meet the new Moonlight <ArrowUpRight size={19} /></Link><a href="#app-gallery" className="lunar-secondary">Explore the app <ArrowDown size={17} /></a></div>
+      <div className="lunar-hero-notes"><span>LOCAL FIRST</span><i /><span>MADE FOR ANDROID</span><i /><span>NO MOONLIGHT ACCOUNT</span></div>
+    </div><motion.div className="lunar-cosmos" style={{ y: still ? 0 : y }}>
+      <div className="lunar-halo" aria-hidden="true" /><div className="lunar-moon" aria-hidden="true" />
+      <span className="lunar-star star-one" aria-hidden="true">+</span><span className="lunar-star star-two" aria-hidden="true">+</span>
+      <div className="lunar-orbit-tag">INTELLIGENCE, IN YOUR ORBIT</div>
+      <motion.div className="lunar-phone lunar-phone-back" style={{ rotate: still ? -9 : rotate }}><Image src="/app-screens/glass/responses-glass-night.webp" alt="Moonlight Glass Night response settings preview" width={390} height={844} sizes="(max-width: 600px) 175px, 240px" preload /></motion.div>
+      <div className="lunar-phone lunar-phone-front"><Image src="/app-screens/glass/settings-new.webp" alt="Moonlight Glass settings with computer and cloud connections" width={390} height={844} sizes="(max-width: 600px) 200px, 260px" preload /></div>
+      <div className="lunar-floating-label"><span className="lunar-signal" />Your intelligence.<br /><strong>In a whole new light.</strong></div>
+    </motion.div></div>
+    <div className="container-page lunar-hero-footer"><a href="#latest-moonlight">SCROLL TO DISCOVER <ArrowDown size={14} /></a><span>App UI preview captures · 1.6.1</span><button onClick={() => setPaused(!paused)} aria-pressed={paused} aria-label={paused ? "Play hero animation" : "Pause hero animation"}>{paused ? <Play size={15} /> : <Pause size={15} />}<span>{paused ? "Play motion" : "Pause motion"}</span></button></div>
+  </section>;
 }

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowUpRight, Moon, ShieldCheck } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight, ShieldCheck } from "lucide-react";
 import { siteConfig } from "@/lib/config";
 
 const footerLinks = {
@@ -26,8 +27,8 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.25fr_2fr] lg:gap-20">
           <div>
             <Link href="/" className="flex w-fit items-center gap-3" aria-label="Moonlight AI — home">
-              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#0a0b0e] shadow-lg shadow-white/10">
-                <Moon size={17} strokeWidth={2.5} />
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-transparent text-white shadow-lg shadow-white/10">
+                <Image src="/moon-crescent.svg" alt="" width={36} height={36} />
               </span>
               <span className="text-[15px] font-semibold tracking-[-0.02em] text-white">Moonlight AI</span>
             </Link>
@@ -37,7 +38,7 @@ export function Footer() {
             </p>
 
             <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-emerald-400/15 bg-emerald-400/[0.06] px-3 py-1.5 text-[11px] font-medium text-emerald-300/80">
-              <ShieldCheck size={13} /> Designed without cloud chat history
+              <ShieldCheck size={13} /> Local storage. Optional connected intelligence.
             </div>
           </div>
 
@@ -48,8 +49,8 @@ export function Footer() {
                 <ul className="mt-5 space-y-3.5">
                   {links.map((link) => (
                     <li key={`${link.label}-${link.href}`}>
-                      <Link href={link.href} className="group inline-flex items-center gap-1.5 text-sm text-white/58 transition-colors hover:text-white">
-                        {link.label}
+                      <Link href={link.href} className="group inline-flex max-w-full items-center gap-1.5 text-sm text-white/70 transition-colors hover:text-white">
+                        <span className="break-all">{link.label}</span>
                         {"external" in link && link.external ? <ArrowUpRight size={12} className="text-white/25 transition-colors group-hover:text-white/60" /> : null}
                       </Link>
                     </li>

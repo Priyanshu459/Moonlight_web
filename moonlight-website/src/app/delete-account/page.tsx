@@ -4,7 +4,7 @@ import { Trash2, HardDrive, Smartphone, Mail } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Data Deletion",
-  description: `How to delete your data from ${siteConfig.name}. Since Moonlight AI stores all data locally on your device, you have full control.`,
+  description: `How to delete your data from ${siteConfig.name}. Manage local data and copies held by connected services.`,
   alternates: { canonical: `${siteConfig.url}/delete-account` },
 };
 
@@ -21,8 +21,7 @@ export default function DeleteAccountPage() {
             Data Deletion
           </h1>
           <p className="text-[var(--text-secondary)] leading-relaxed max-w-2xl">
-            Moonlight AI does not require accounts and does not store your data on any server. 
-            All your data lives on your device, which means you have full control over deleting it.
+            Moonlight AI does not require a Moonlight account. You can delete local data on your phone. Computer and Cloud services may retain separate copies of requests.
           </p>
         </div>
 
@@ -34,12 +33,12 @@ export default function DeleteAccountPage() {
             </div>
             <div>
               <h2 className="text-sm font-semibold text-[var(--text-primary)] mb-1">
-                No Server-Side Data
+                No Moonlight Account to Delete
               </h2>
               <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
                 Moonlight AI does not have user accounts, and does not store your conversations, 
                 memories, or personal data on any server operated by Moonlight AI. 
-                There is no account to &quot;delete&quot; — your data exists only on your device.
+                Remove local data below. For requests sent to a provider or LM Studio server, use that service’s deletion and retention controls too.
               </p>
             </div>
           </div>
@@ -65,6 +64,8 @@ export default function DeleteAccountPage() {
                   You can delete specific data within the app without removing everything:
                 </p>
                 <ul className="text-sm text-[var(--text-secondary)] space-y-1.5 list-disc list-inside">
+                  <li>Delete individual conversations from the conversation list</li>
+                  <li>Remove saved provider connections and revoke keys with the provider if needed</li>
                   <li>Delete individual memories or clear all memories from Settings</li>
                   <li>Delete downloaded AI models from the Models screen</li>
                 </ul>
@@ -143,9 +144,9 @@ export default function DeleteAccountPage() {
                 notes: "Deleted when you clear app data or uninstall",
               },
               {
-                item: "Server-side data",
-                location: "None",
-                notes: "Moonlight AI does not store user data on servers",
+                item: "Provider or LM Studio data",
+                location: "Your selected service or computer",
+                notes: "Manage retention and deletion with that provider or server operator",
               },
             ].map((row) => (
               <div key={row.item} className="flex flex-col sm:flex-row gap-1 sm:gap-4 text-sm py-3 border-b border-white/5 last:border-0">
