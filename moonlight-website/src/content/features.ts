@@ -1,19 +1,155 @@
-import { Brain, Palette, Globe, ShieldCheck, Mic, MessageSquare, SlidersHorizontal, FileCheck, Cpu, Monitor, Cloud, Download } from "lucide-react";
-export type FeatureStatus = "RELEASED" | "PREVIEW" | "BETA" | "ALPHA" | "MODEL-DEPENDENT" | "IN DEVELOPMENT";
-export interface Feature { id:string; title:string; headline:string; description:string; technical:string; benefit:string; icon:import("lucide-react").LucideIcon; color:string; note?:string; status:FeatureStatus; }
-// Source: Android 1.6.1 checkpoint, ChatScreen, providers, LMStudioScreen, model catalog.
-export const features:Feature[] = [
-{id:"local-inference",title:"Phone intelligence",headline:"Make room for your next idea.",description:"Run compatible compact language models on your phone. After download, Phone chat can work offline.",technical:"Official pinned LFM2 350M, LFM2 700M and LFM2.5 1.2B Q4_K_M downloads. Physical-phone inference remains unverified for this preview.",benefit:"Think offline.",icon:Brain,color:"indigo",status:"PREVIEW"},
-{id:"lmstudio",title:"Your computer, connected",headline:"Bring your desktop models along.",description:"Use the Computer picker to chat with a reachable LM Studio server. Discover models and see connection progress or errors.",technical:"Same-Wi-Fi setup or authenticated remote HTTPS with a separately configured private network. Your computer must be awake. Direct LM Link pairing is not implemented.",benefit:"Use your own compute.",icon:Monitor,color:"cyan",status:"PREVIEW"},
-{id:"providers",title:"Your choice of cloud",headline:"One space. More possibilities.",description:"Connect OpenAI, Gemini, Anthropic, Alibaba Cloud, NVIDIA or a compatible provider with your API key.",technical:"Computer and Cloud requests can include up to 20 recent messages, personal instructions and attached text, after a send disclosure. Provider charges and privacy terms apply.",benefit:"Choose a provider.",icon:Cloud,color:"blue",status:"PREVIEW"},
-{id:"web-tools",title:"Answers with sources",headline:"Follow the thought to its source.",description:"Supported OpenAI and Anthropic models can use provider web search and return clickable citations.",technical:"Provider web tools are available unless disabled in provider settings. This sends chat context to the provider, which may search through its services. Not available for every model or endpoint.",benefit:"Explore source material.",icon:Globe,color:"cyan",status:"MODEL-DEPENDENT"},
-{id:"five-themes",title:"Five shades of Moonlight",headline:"Find your light.",description:"Glass, Glass Night, Paper, Mono and Midnight, with system appearance and a saved Reduce Motion preference.",technical:"Appearance preferences persist locally. Screens shown on this site are browser captures of the app UI preview.",benefit:"Make it yours.",icon:Palette,color:"violet",status:"PREVIEW"},
-{id:"credentials",title:"Saved connections",headline:"Keep your setup close.",description:"Reconnect using saved provider settings and encrypted API credentials.",technical:"Native AES-GCM credential storage uses Android Keystore. Chat history uses separate private MMKV storage. Private-network HTTP is opt-in and unencrypted without another protection layer.",benefit:"Less repeated setup.",icon:ShieldCheck,color:"emerald",status:"PREVIEW"},
-{id:"responses",title:"Your response style",headline:"A little more you.",description:"Choose concise, balanced or detailed responses and save personal instructions.",technical:"Personal instructions are included in Computer and Cloud requests. Saved local memories are not automatically sent in those modes.",benefit:"Set the tone.",icon:SlidersHorizontal,color:"orange",status:"PREVIEW"},
-{id:"voice",title:"Voice input",headline:"Catch the thought.",description:"Use Android speech recognition to turn spoken ideas into text for your conversation.",technical:"Android’s speech service may process audio online. Transcripts follow the selected Phone, Computer or Cloud mode.",benefit:"Speak your prompt.",icon:Mic,color:"pink",status:"PREVIEW"},
-{id:"conversations",title:"A place for every thought",headline:"Pick up the thread.",description:"Search, rename and delete conversations. Review or remove locally saved memories and share selected text when you choose.",technical:"Conversations and memories persist in private app storage. Android cloud backup is disabled. Shared copies and online provider data must be managed separately.",benefit:"Stay organized.",icon:MessageSquare,color:"amber",status:"PREVIEW"},
-{id:"files",title:"Text, with context",headline:"Bring your notes along.",description:"Attach supported text files to summarize notes, inspect code or work through a document.",technical:"The native reader accepts up to 512 KiB of UTF-8 text. Attached text stays local in Phone mode and can be transmitted in Computer or Cloud mode after confirmation.",benefit:"Work with your documents.",icon:FileCheck,color:"blue",status:"PREVIEW"},
-{id:"model-checks",title:"Models that fit",headline:"A more careful use of memory.",description:"Capacity checks filter phone downloads and run again before loading. Model loads are serialized.",technical:"ARM64, at least 4 GiB total RAM, file size plus 1.5 GiB available RAM, a 1.3 GiB file cap, two threads and 1024 context. Compatibility checks do not guarantee device safety.",benefit:"Reduce memory pressure.",icon:Cpu,color:"emerald",status:"PREVIEW"},
-{id:"updates",title:"Stay in the loop",headline:"A heads-up when there’s more.",description:"An in-app notice can point you to a newer Google Play version when one is available for your installation.",technical:"Foreground update checks through Google Play are limited to once per hour in the running app. Availability is not verified for the separate preview package.",benefit:"Find app updates.",icon:Download,color:"indigo",status:"PREVIEW"},
+import { Brain, Palette, Globe, ShieldCheck, Mic, MessageSquare, SlidersHorizontal, FileCheck, Cpu, Monitor, Cloud, Flag } from "lucide-react";
+
+export type FeatureStatus = "RELEASED" | "MODEL-DEPENDENT" | "IN DEVELOPMENT";
+
+export interface Feature {
+  id: string;
+  title: string;
+  headline: string;
+  description: string;
+  technical: string;
+  benefit: string;
+  icon: import("lucide-react").LucideIcon;
+  color: string;
+  note?: string;
+  status: FeatureStatus;
+}
+
+// Source: Moonlight AI v1.7.2 Android application capabilities
+export const features: Feature[] = [
+  {
+    id: "local-inference",
+    title: "On-device GGUF inference",
+    headline: "Run models directly on your phone.",
+    description: "Run compatible GGUF language models directly on your Android phone. In Phone mode, prompts and responses are processed on-device without sending data to a cloud AI provider.",
+    technical: "Compatible GGUF models running via native on-device execution. Phone mode can operate without internet access once the required model is downloaded.",
+    benefit: "On-device AI inference in Phone mode.",
+    icon: Brain,
+    color: "indigo",
+    status: "RELEASED",
+  },
+  {
+    id: "lmstudio",
+    title: "Your computer, connected",
+    headline: "Connect Moonlight to your LM Studio server.",
+    description: "Connect to your own compatible LM Studio server to chat with models running on your computer. Guided setup covers same-Wi-Fi and private network access.",
+    technical: "User-configured endpoint. Requests route to your computer's LM Studio API address over your local network or a separately configured private network (such as Tailscale).",
+    benefit: "Use your own desktop compute.",
+    icon: Monitor,
+    color: "cyan",
+    status: "RELEASED",
+  },
+  {
+    id: "providers",
+    title: "Your choice of cloud",
+    headline: "Connect your own provider API keys.",
+    description: "Connect OpenAI, Google Gemini, Anthropic, Alibaba Cloud, NVIDIA, or compatible providers. When Cloud mode is used, requests are processed by the selected provider.",
+    technical: "Requests include recent messages, personal instructions and attached text after a send confirmation. Provider privacy policies, retention practices and billing apply.",
+    benefit: "Use cloud models when you need additional capabilities.",
+    icon: Cloud,
+    color: "blue",
+    status: "RELEASED",
+  },
+  {
+    id: "reporting",
+    title: "Report AI responses",
+    headline: "In-app reporting for quality and safety.",
+    description: "Moonlight provides an in-app way to report AI responses that are incorrect, unsafe, or inappropriate.",
+    technical: "Users can report specific problematic outputs directly from the chat screen with a category selection, submitting relevant response details so issues can be reviewed.",
+    benefit: "Flag incorrect or inappropriate responses.",
+    icon: Flag,
+    color: "amber",
+    status: "RELEASED",
+  },
+  {
+    id: "web-tools",
+    title: "Answers with sources",
+    headline: "Explore source material.",
+    description: "Supported OpenAI and Anthropic cloud models can use provider web search to return answers with clickable citations.",
+    technical: "Provider web tools are enabled unless disabled in provider settings. Search queries and chat context are processed by the provider's search infrastructure.",
+    benefit: "Explore source material with citations.",
+    icon: Globe,
+    color: "cyan",
+    status: "MODEL-DEPENDENT",
+  },
+  {
+    id: "credentials",
+    title: "Secure credential storage",
+    headline: "Encrypted API keys and server tokens.",
+    description: "Store provider API keys and LM Studio tokens securely on your Android device with hardware-backed encryption.",
+    technical: "Native AES-GCM encryption backed by the Android Keystore. Chat history is stored separately in private app MMKV storage.",
+    benefit: "Secure local credential protection.",
+    icon: ShieldCheck,
+    color: "emerald",
+    status: "RELEASED",
+  },
+  {
+    id: "five-themes",
+    title: "Five shades of Moonlight",
+    headline: "Find your light.",
+    description: "Glass, Glass Night, Paper, Mono, and Midnight themes, with system appearance following and a saved Reduce Motion preference.",
+    technical: "Appearance preferences persist locally in private app storage. Full accessibility support including system reduced-motion detection.",
+    benefit: "Personalized comfort and accessibility.",
+    icon: Palette,
+    color: "violet",
+    status: "RELEASED",
+  },
+  {
+    id: "conversations",
+    title: "Private conversations & controls",
+    headline: "You control your chat history.",
+    description: "Search, rename, and delete conversations. Review or clear locally saved memories at any time. No Moonlight account or centralized chat history.",
+    technical: "Conversations and memories persist in private app storage. Android cloud backup is disabled. Deleting data removes it immediately from local storage.",
+    benefit: "No Moonlight account or centralized tracking.",
+    icon: MessageSquare,
+    color: "amber",
+    status: "RELEASED",
+  },
+  {
+    id: "files",
+    title: "Text with context",
+    headline: "Bring your notes along.",
+    description: "Attach supported UTF-8 text documents to summarize notes, review code, or analyze text.",
+    technical: "Native bounded reader accepts up to 512 KiB of text. Stays local in Phone mode; transmitted to the configured endpoint in Computer or Cloud mode after confirmation.",
+    benefit: "Work with your documents.",
+    icon: FileCheck,
+    color: "blue",
+    status: "RELEASED",
+  },
+  {
+    id: "model-checks",
+    title: "Model management & capacity checks",
+    headline: "A careful use of device memory.",
+    description: "Capacity checks filter local model downloads and verify available RAM before loading on-device models.",
+    technical: "ARM64 verification, total RAM and available RAM checks against model size to reduce memory pressure. Serialized model loading.",
+    benefit: "Informed device compatibility.",
+    icon: Cpu,
+    color: "emerald",
+    status: "RELEASED",
+  },
+  {
+    id: "responses",
+    title: "Response style preferences",
+    headline: "A little more you.",
+    description: "Choose concise, balanced, or detailed response styles and save custom personal instructions.",
+    technical: "Personal instructions apply to conversations and are included in Computer and Cloud requests. Saved memories are not automatically injected into remote requests.",
+    benefit: "Set the response tone.",
+    icon: SlidersHorizontal,
+    color: "orange",
+    status: "RELEASED",
+  },
+  {
+    id: "voice",
+    title: "Voice input",
+    headline: "Speak your prompt.",
+    description: "Use Android speech recognition to dictate prompts directly into your conversation.",
+    technical: "Uses Android system SpeechRecognizer. Transcripts follow the data path of the selected Phone, Computer, or Cloud mode. Moonlight does not record raw audio.",
+    benefit: "Hands-free speech-to-text.",
+    icon: Mic,
+    color: "pink",
+    status: "RELEASED",
+  },
 ];
-export const comingSoonFeatures:Feature[]=[];
+
+export const comingSoonFeatures: Feature[] = [];
+

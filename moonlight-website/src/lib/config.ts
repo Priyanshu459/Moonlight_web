@@ -5,10 +5,10 @@
 
 export const siteConfig = {
   name: "Moonlight AI",
-  tagline: "AI that stays with you.",
+  tagline: "Your AI. Your device. Your choice.",
   description:
-    "Moonlight AI brings phone models, your LM Studio computer and your choice of cloud into one Android app. Explore the 1.6.1 Glass preview.",
-  shortDescription: "Phone. Computer. Cloud. Your choice.",
+    "Moonlight AI is a private, local-first AI assistant for Android. Run compatible GGUF models on-device in Phone mode, connect your own LM Studio computer, or use your choice of cloud provider.",
+  shortDescription: "Private AI for Android. Local-first, not local-only.",
 
   // --- URLs ---
   url: "https://moonlight-ai-app.pages.dev",
@@ -28,13 +28,14 @@ export const siteConfig = {
   github: null as string | null,
 
   // --- Legal ---
-  lastUpdated: "September 16, 2026",
+  lastUpdated: "October 1, 2026",
   copyrightYear: "2026",
   companyName: "Moon Knight Studio",
 
   // --- App Details ---
-  appVersion: "1.6.1 preview",
-  latestPreviewVersion: "1.6.1",
+  appVersion: "v1.7.2",
+  versionCode: 21,
+  releaseScope: "Applies to Moonlight AI 1.7.x",
   packageId: "com.moonknightstudio.moonlightai",
   previewPackageId: "com.moonknightstudio.moonlightai.preview",
   minAndroidVersion: "Android 7.0 (API 24)",

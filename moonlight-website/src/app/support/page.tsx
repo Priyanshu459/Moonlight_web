@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { faqCategories } from "@/content/faq";
@@ -20,22 +21,28 @@ export default function SupportPage() {
         <div className="container-page mb-16 text-center">
           <h1 className="text-display-lg text-white mb-6 tracking-tight">Need help with Moonlight?</h1>
           <p className="text-xl text-white/60 max-w-2xl mx-auto">
-            Everything you need to know about running local AI models on your Android device.
+            Everything you need to know about running Moonlight AI on your Android device — Phone, Computer, and Cloud modes.
           </p>
         </div>
 
         {/* Quick Links */}
         <div className="container-page max-w-4xl mb-24">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-6 rounded-2xl bg-[#111318] border border-white/5 hover:border-indigo-500/30 transition-colors group cursor-pointer">
+            <Link
+              href="/how-it-works"
+              className="p-6 rounded-2xl bg-[#111318] border border-white/5 hover:border-indigo-500/30 transition-colors group cursor-pointer block"
+            >
               <div className="w-12 h-12 rounded-full bg-indigo-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <BookOpen size={20} className="text-indigo-400" />
               </div>
               <h3 className="text-lg font-bold text-white mb-2">Read the Documentation</h3>
-              <p className="text-white/50 text-sm">Detailed guides on model formats, GGUF quantization, and device optimization.</p>
-            </div>
+              <p className="text-white/50 text-sm">Detailed guides on Phone mode GGUF models, LM Studio setup, and Cloud provider keys.</p>
+            </Link>
             
-            <a href={`mailto:${siteConfig.supportEmail}`} className="p-6 rounded-2xl bg-[#111318] border border-white/5 hover:border-violet-500/30 transition-colors group cursor-pointer block">
+            <a
+              href={`mailto:${siteConfig.supportEmail}`}
+              className="p-6 rounded-2xl bg-[#111318] border border-white/5 hover:border-violet-500/30 transition-colors group cursor-pointer block"
+            >
               <div className="w-12 h-12 rounded-full bg-violet-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <Mail size={20} className="text-violet-400" />
               </div>

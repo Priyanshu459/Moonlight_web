@@ -1,9 +1,97 @@
-export interface FaqItem { q:string; a:string; }
-export interface FaqCategory { id:string; title:string; questions:FaqItem[]; }
-export const faqCategories:FaqCategory[]=[
-{id:"getting-started",title:"Getting Started",questions:[{q:"What is Moonlight AI?",a:"An Android assistant with Phone, Computer and Cloud model choices. The 1.6.1 preview adds the Glass interface, LM Studio setup and compact LFM downloads."},{q:"Do I need an account or subscription?",a:"No Moonlight account is required. Phone inference uses your device. Cloud providers require your own credentials and may charge for inference and web tools; private-network services may have separate terms."},{q:"Does it work offline?",a:"Phone chat can work offline after downloading a compatible model. Computer mode needs a reachable server; cloud services, model downloads and some Android speech services need network access."}]},
-{id:"models",title:"Models & Connections",questions:[{q:"Which phone models are available?",a:"The new catalog offers official Liquid AI LFM2 350M, LFM2 700M and LFM2.5 1.2B Q4_K_M files from pinned Hugging Face revisions. Existing installed models are preserved. Physical-phone LFM inference remains unverified in the preview."},{q:"How much storage and memory do I need?",a:"Downloads are about 229 MB, 469 MB and 731 MB. Allow extra space for the app. Phone inference requires ARM64, at least 4 GiB total RAM and available RAM greater than model size plus 1.5 GiB; eligibility is checked again before loading."},{q:"Can I use LM Studio away from home?",a:"Yes, when your authenticated HTTPS server is reachable over a separately configured private network. Follow Settings → LM Studio → From anywhere. Your computer must remain awake. Moonlight does not directly pair with LM Link."}]},
-{id:"performance",title:"Performance",questions:[{q:"How fast is local chat?",a:"Speed and battery use depend on the device, model and available memory. No physical-phone speed benchmark is claimed for this preview."},{q:"Why is a model unavailable?",a:"The capacity checks may reject it based on architecture, total RAM, available RAM or file size. Try an eligible smaller model, or use Computer or Cloud mode. Checks cannot guarantee device safety."}]},
-{id:"privacy",title:"Privacy & Security",questions:[{q:"Does my data leave my phone?",a:"Phone inference stays local. Computer and Cloud requests can send up to 20 recent messages, personal instructions and attached text to the selected service after a send disclosure. Saved memories are not automatically included. Downloads and Android system services have their own network behavior."},{q:"Are API keys encrypted?",a:"The native credential store protects API keys and LM Studio tokens with AES-GCM and Android Keystore. This is separate from local conversation storage. Private-network HTTP is not encrypted in transit unless protected by another layer."},{q:"Does deleting a chat delete it everywhere?",a:"Deleting removes the local conversation. It does not remove server logs, provider records, emails or shared copies. Manage those with the service or server operator. You can also remove saved connections and revoke keys at the provider."},{q:"Do you add tracking?",a:"The current app has no analytics, advertising or remote crash-reporting SDK. Selected cloud services, Google Play, model-download hosts and Android system services have their own data practices."}]},
-{id:"troubleshooting",title:"Troubleshooting",questions:[{q:"LM Studio does not show models",a:"Check the visible connection status above the form. Verify the server is running, the address is reachable and the token is correct. Use the API server address, not localhost or an LM Link invitation. An empty catalog now has an explicit status."},{q:"My provider request failed",a:"Check the key, account allowance, region permissions and model ID. Refresh the catalog or choose a supported text model. Image/video generation and vision are not included in this preview."},{q:"Model download failed",a:"Check your connection and free storage, then retry an eligible model in Models & storage. Do not bypass a failed capacity check."}]}
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
+export interface FaqCategory {
+  id: string;
+  title: string;
+  questions: FaqItem[];
+}
+
+export const faqCategories: FaqCategory[] = [
+  {
+    id: "getting-started",
+    title: "Getting Started",
+    questions: [
+      {
+        q: "What is Moonlight AI?",
+        a: "Moonlight AI is a private, local-first AI assistant for Android with Phone, Computer, and Cloud execution modes. Version 1.7.2 offers on-device GGUF inference, user-controlled LM Studio connectivity, and support for major cloud AI providers with your own API keys.",
+      },
+      {
+        q: "Do I need an account to use Moonlight?",
+        a: "No Moonlight account is required, and Moonlight does not operate a centralized chat history. Phone mode runs locally on your device. When you choose to use third-party cloud providers, you provide your own API credentials, and that provider's account terms and billing apply.",
+      },
+      {
+        q: "Does Moonlight work offline?",
+        a: "Phone mode can operate without an internet connection after you download a compatible GGUF model to your device. Computer mode requires a reachable LM Studio server on your network, and Cloud mode requires network access to the selected provider.",
+      },
+    ],
+  },
+  {
+    id: "models",
+    title: "Models & Connections",
+    questions: [
+      {
+        q: "Which models can I run in Phone mode?",
+        a: "Phone mode supports compatible GGUF quantized models downloaded from Hugging Face. The app checks your device memory and architecture to verify compatibility before downloading and loading.",
+      },
+      {
+        q: "How much storage and memory is required for Phone mode?",
+        a: "Phone mode requires an Android device running Android 7.0 (API 24) or newer with an ARM64 processor, at least 4 GiB of total RAM, and available RAM exceeding the model file size by 1.5 GiB. Downloads typically range from 200 MB to 1.3 GB depending on model size.",
+      },
+      {
+        q: "Can I connect to LM Studio on another computer?",
+        a: "Yes. Computer mode connects to your own compatible LM Studio server. You can connect over your local Wi-Fi or configure an authenticated HTTPS address through a secure private network (such as Tailscale). Your computer must remain awake and reachable.",
+      },
+      {
+        q: "Which cloud providers are supported?",
+        a: "Moonlight supports popular providers including OpenAI, Anthropic, Google Gemini, Alibaba Cloud, and NVIDIA, as well as compatible custom endpoints. You supply your own API keys.",
+      },
+    ],
+  },
+  {
+    id: "privacy",
+    title: "Privacy & Data Safety",
+    questions: [
+      {
+        q: "Where does my data go?",
+        a: "Moonlight is local-first, not local-only. In Phone mode, conversations, memories, and prompts are processed on your device. In Computer or Cloud mode, a send disclosure confirms before transmitting recent messages, personal instructions, and attached text to the server or provider you select. That provider's privacy and retention policies apply.",
+      },
+      {
+        q: "How are API credentials protected?",
+        a: "API keys and server tokens are encrypted locally using AES-GCM backed by the Android Keystore hardware-backed security enclave. Chat history is stored separately in private app MMKV storage.",
+      },
+      {
+        q: "Does deleting a conversation delete it everywhere?",
+        a: "Deleting a conversation removes it from your device's local storage. If you used Computer or Cloud mode for that conversation, logs or records held by your LM Studio server or the third-party provider must be managed through that service.",
+      },
+      {
+        q: "Does Moonlight contain advertising or analytics SDKs?",
+        a: "No. The Moonlight AI Android app contains no advertising SDKs and no analytics or telemetry tracking SDKs.",
+      },
+      {
+        q: "Can I report incorrect or unsafe AI responses?",
+        a: "Yes. Moonlight provides an in-app way to report AI responses that are incorrect, unsafe, or inappropriate directly from the chat screen.",
+      },
+    ],
+  },
+  {
+    id: "troubleshooting",
+    title: "Troubleshooting",
+    questions: [
+      {
+        q: "LM Studio does not show models or connect",
+        a: "Verify that the LM Studio server is running on your computer, CORS is enabled, and your computer is reachable from your phone's network. Check the connection status indicator in the app settings.",
+      },
+      {
+        q: "My cloud provider request failed",
+        a: "Check that your API key is valid, your account has active billing/credits, and the selected model ID is supported by that provider in your region.",
+      },
+      {
+        q: "Phone mode model download failed or model won't load",
+        a: "Ensure you have a stable internet connection and sufficient free internal storage. If loading fails, your device may not have enough available free RAM to run the model safely.",
+      },
+    ],
+  },
 ];

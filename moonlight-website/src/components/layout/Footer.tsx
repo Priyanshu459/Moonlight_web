@@ -5,9 +5,10 @@ import { siteConfig } from "@/lib/config";
 
 const footerLinks = {
   Product: [
+    { href: "/", label: "Home" },
     { href: "/features", label: "Features" },
     { href: "/how-it-works", label: "How it works" },
-    { href: "/download", label: "Google Play" },
+    { href: "/download", label: "Download" },
   ],
   Legal: [
     { href: "/privacy", label: "Privacy policy" },
@@ -34,11 +35,11 @@ export function Footer() {
             </Link>
 
             <p className="mt-5 max-w-sm text-sm leading-6 text-white/45">
-              Private, local-first AI for Android—built to run capable language models directly on your device.
+              Private, local-first AI for Android. Run models on your device in Phone mode, connect your computer, or use your choice of cloud provider.
             </p>
 
             <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-emerald-400/15 bg-emerald-400/[0.06] px-3 py-1.5 text-[11px] font-medium text-emerald-300/80">
-              <ShieldCheck size={13} /> Local storage. Optional connected intelligence.
+              <ShieldCheck size={13} /> Local-first with Phone, Computer, and Cloud modes
             </div>
           </div>
 
@@ -63,7 +64,7 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col gap-3 border-t border-white/7 pt-6 text-[11px] text-white/28 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {siteConfig.copyrightYear} {siteConfig.companyName}. All rights reserved.</p>
-          <p>Built for Android · Powered locally by llama.cpp</p>
+          <p>Built for Android · Phone, Computer &amp; Cloud modes</p>
         </div>
       </div>
     </footer>

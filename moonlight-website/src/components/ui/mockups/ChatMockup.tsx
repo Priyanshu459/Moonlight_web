@@ -65,7 +65,7 @@ export function ChatMockup() {
             >
               <motion.p variants={paragraphVariants} className="mb-2">Local LLM inference runs directly on your phone&apos;s ARM64 CPU rather than sending prompts to cloud data centers.</motion.p>
               <motion.p variants={paragraphVariants} className="mb-2">Moonlight uses <strong className="text-white font-medium">llama.rn</strong> with GGUF weights stored in private MMKV storage. Context fitting dynamically trims tokens to preserve memory.</motion.p>
-              <motion.p variants={paragraphVariants} className="text-white/70">Computation stays on-device, meaning zero subscriptions, zero tracking, and uninterrupted offline access.</motion.p>
+              <motion.p variants={paragraphVariants} className="text-white/70">In Phone mode, inference runs locally on-device without third-party tracking or mandatory subscriptions.</motion.p>
             </motion.div>
             {/* Typing indicator simulating generation */}
             <div className="flex items-center gap-1 px-1 mt-1">

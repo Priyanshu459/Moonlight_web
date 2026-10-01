@@ -1,20 +1,175 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
-export const metadata: Metadata = { title: "Privacy Policy", description: "How Moonlight handles data on your phone, your LM Studio computer and your chosen cloud provider.", alternates: { canonical: `${siteConfig.url}/privacy` } };
-export default function PrivacyPage(){return <div className="pb-20 pt-28"><article className="container-page max-w-3xl"><header className="mb-12 border-b border-white/10 pb-10"><p className="eyebrow mb-4">Moon Knight Studio / Moonlight AI</p><h1 className="text-display-md">Privacy Policy</h1><p className="mt-4 text-sm text-slate-400">Updated {siteConfig.lastUpdated} · Includes 1.6.1 preview features</p><p className="mt-5 text-sm text-slate-300 break-words">Android app: {siteConfig.packageId}<br/>Preview app: {siteConfig.previewPackageId}</p></header><div className="legal-content">
-<h2>1. Overview and scope</h2><p>Moonlight AI is an Android AI assistant from Moon Knight Studio. You can run a model on your phone, connect your own LM Studio computer, or use a cloud provider with your own API key. Where your messages are processed depends on the mode you select. No Moonlight account is required. This policy describes the app, this website and information you choose to send to our support address.</p>
-<h2>2. At a glance: where your data goes</h2><ul><li><strong>Phone:</strong> prompts, conversation context, enabled saved memories and attached text are processed by the model on your device. Local inference works offline after the model is downloaded.</li><li><strong>Computer:</strong> requests go to the LM Studio server you configure, which may route them to a linked computer under your server setup.</li><li><strong>Cloud:</strong> requests go to the provider you select. Its privacy policy, retention practices, account terms and charges apply.</li></ul><p>Moon Knight Studio does not operate a central chat account or conversation-sync service for this build. That does not mean all use is offline: the connections below can send information to third parties.</p>
-<h2>3. Information stored on your phone</h2><p>The app stores conversation messages and names, local memories, personal instructions, response preferences, appearance and Reduce Motion settings, selected models, provider connection metadata and downloaded model files in private app storage. Settings and conversations use MMKV. Android cloud backup is disabled. Conversation storage is not configured with a separate MMKV encryption key; do not interpret private app storage as end-to-end encrypted chat.</p><p>API keys and LM Studio tokens are saved through the native encrypted credential store using AES-GCM and an Android Keystore key. Provider metadata is stored separately without the API key. This credential protection does not imply that all app data is encrypted in the same way.</p>
-<h2>4. Computer and cloud requests</h2><p>After you select a remote model and confirm the send disclosure, Moonlight sends up to 20 recent messages, your personal instructions, the selected model and response parameters to that endpoint. Text from a currently attached document is included in the request. The app asks again when you attach text or change the conversation, provider or model. The selected provider receives your API credential to authenticate requests.</p><p>Saved memories are not automatically injected into Computer or Cloud requests, and those responses do not create saved memories. However, anything you type, paste or retain in the recent conversation can be included, even if it originally came from a local conversation. Model discovery also contacts the configured endpoint using its saved credentials.</p><p>Provider presets include OpenAI, Google Gemini, Anthropic, Alibaba Cloud and NVIDIA. You can configure compatible endpoints. Review the actual provider and endpoint before sending sensitive material. Providers may receive connection metadata such as your IP address and process requests in other countries. Their retention, logging and training settings depend on their own services and your account; Moonlight does not guarantee zero retention.</p>
-<h2>5. LM Studio, local networks and remote access</h2><p>Computer mode sends the same request content described above to your LM Studio API server. Your server operator controls its logs, connected models and any further routing. Moonlight does not pair directly with LM Link or automatically join a private network.</p><p>Remote setup requires an authenticated HTTPS address and a separately configured private connection, such as Tailscale on your phone and computer. The networking provider has its own privacy practices. Your computer must remain awake and reachable.</p><p>For same-network use, an explicit opt-in permits HTTP to a supported private IPv4 address. <strong>HTTP does not encrypt prompts or tokens in transit</strong> unless another layer, such as your VPN, protects the connection. Cloud providers require HTTPS. The native client rejects redirects and restricts permitted endpoints. Changing a saved LM Studio server address requires entering its token again.</p>
-<h2>6. Provider web search and source links</h2><p>Supported OpenAI and Anthropic models can receive provider-hosted web tools unless disabled in the provider settings. The provider decides whether to search and may send queries to its search services. Recent conversation content and personal instructions are part of the provider request; this is not a search-only payload. Provider tool charges may apply. Source links returned in answers can open external websites, which receive standard browser connection information.</p><p>The earlier SearXNG Web Search Alpha interface is not part of the 1.6.1 preview. This policy makes no promise of a query-review step, zero-logging search gateway, or local generation for provider-assisted answers.</p>
-<h2>7. Model downloads and app updates</h2><p>Downloading phone models connects to Hugging Face and its download infrastructure over HTTPS. The current catalog uses pinned official Liquid AI model files, with download integrity checks. Chat messages and memories are not included in model-download requests. The host may receive your IP address and other connection metadata.</p><p>When the app is opened or returns to the foreground, it can check update availability through Google Play, at most once per hour in the running app. Google Play handles this under its own privacy practices. This check does not include your chat content. Update availability depends on the installed build and Google Play distribution.</p>
-<h2>8. Voice, files, clipboard and sharing</h2><p>Optional voice input uses Android’s system speech-recognition service. Moonlight receives the transcript and does not itself save raw audio recordings. The system service may process audio online depending on your device and speech provider. Transcribed text follows the data path of the selected conversation mode.</p><p>The system file picker lets you choose a supported text document. A bounded reader accepts up to 512 KiB of UTF-8 text. Phone mode processes it locally; Computer or Cloud mode can transmit the text after the send confirmation. Image understanding and image/video generation are not included in this preview.</p><p>Copying text places it on the Android clipboard. Sharing sends the selected text to the app or destination you choose. Your keyboard, clipboard, speech provider, file provider and sharing destination have their own data practices.</p>
-<h2>9. Permissions, analytics and support</h2><p>The app manifest declares internet access for its network features. It does not request camera, location, contacts, SMS, microphone-recording or broad external-storage permissions. Voice and document selection use system interfaces. Device memory and architecture information is checked locally to determine model eligibility.</p><p>The current app has no advertising, analytics or remote crash-reporting SDK. Automated AI-response reporting has no active endpoint in this preview. If you email us, we receive your address, message and any attachments you choose to provide and use them to answer your request. Avoid sending passwords, API keys or unnecessary sensitive information.</p>
-<h2>10. This website and external services</h2><p>This website serves product information and UI preview images; its examples do not submit chat prompts. The website host can process ordinary request information, such as IP addresses, requested pages and browser headers, to serve and protect the site. We do not add advertising or analytics scripts in this website code. Hosting-level settings and external sites have their own privacy practices. Contact links open your email application.</p>
-<h2>11. Retention and deletion</h2><p>Local conversations, preferences, memories and models remain until you remove them or clear app storage. You can delete conversations, remove individual or all memories, delete downloaded models, and remove saved provider connections. Removing a connection deletes its saved credential from the app; revoke the API key with the provider if you also want to invalidate it there.</p><p>Android Settings → Apps → Moonlight AI → Storage → Clear data, or uninstalling, removes local app data. This does not delete provider logs, copies on your LM Studio server, emails, clipboard copies or content you shared. Request deletion from the relevant provider or server operator and manage their retention settings. For support emails, ask us to delete the correspondence when it is no longer needed to resolve your request, subject to any necessary legal retention.</p><p>See <Link href="/delete-account">Manage and delete your data</Link> for local deletion steps and third-party controls.</p>
-<h2>12. Your choices and security</h2><p>Use Phone mode for local inference. Review the send disclosure before choosing Computer or Cloud, disable provider web tools when you do not want them available, and remove connections you no longer use. You can turn local memory off, review or delete saved facts, and choose whether to use voice, attachments or sharing.</p><p>Private app storage, HTTPS and encrypted credentials reduce some risks, but no device, network or service can guarantee absolute security. Device-memory checks are compatibility safeguards, not a guarantee of safe performance on every phone.</p>
-<h2>13. Children’s privacy</h2><p>Moonlight AI is intended for adults aged 18 and over and is not directed to children. If you believe a child has sent personal information to our support address, contact us so we can address it.</p>
-<h2>14. Policy changes and contact</h2><p>We update this policy when the app or its data practices change. The date above identifies this revision. For privacy questions or requests concerning information sent to us, email <a href={`mailto:${siteConfig.privacyEmail}`}>{siteConfig.privacyEmail}</a>. Developer: {siteConfig.companyName}.</p>
-</div></article></div>}
+
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+  description:
+    "How Moonlight AI handles data on your phone, your LM Studio computer, and your chosen cloud providers. Applies to Moonlight AI 1.7.x.",
+  alternates: { canonical: `${siteConfig.url}/privacy` },
+};
+
+export default function PrivacyPage() {
+  return (
+    <div className="pb-20 pt-28">
+      <article className="container-page max-w-3xl">
+        <header className="mb-12 border-b border-white/10 pb-10">
+          <p className="eyebrow mb-4">Moon Knight Studio / Moonlight AI</p>
+          <h1 className="text-display-md">Privacy Policy</h1>
+          <p className="mt-4 text-sm text-slate-400">
+            Last Updated: {siteConfig.lastUpdated} · {siteConfig.releaseScope}
+          </p>
+          <p className="mt-3 text-sm text-slate-300">
+            Android Application ID: {siteConfig.packageId}
+          </p>
+        </header>
+
+        <div className="legal-content">
+          <h2>1. Overview and Core Architecture</h2>
+          <p>
+            Moonlight AI is a privacy-focused, local-first artificial intelligence assistant application for Android, developed and published by {siteConfig.companyName}.
+          </p>
+          <p>
+            <strong>Moonlight is local-first, not local-only.</strong> The application supports three distinct execution modes: Phone mode (on-device inference), Computer mode (connecting to your own LM Studio server), and Cloud mode (connecting to supported third-party cloud AI providers with your own API keys). Where your messages and prompts are processed depends directly on the execution mode you choose.
+          </p>
+          <p>
+            Moonlight does not require you to create a Moonlight account. We do not operate a centralized user database, account system, or cloud chat synchronization service. This policy explains what data is stored on your device, how network requests are handled in each mode, and what controls you have over your data.
+          </p>
+
+          <h2>2. At a Glance: Where Your Data Goes</h2>
+          <ul>
+            <li>
+              <strong>Phone Mode (On-Device Inference):</strong> Prompts, responses, conversation context, personal instructions, and attached text files are processed entirely by compatible GGUF language models running on your Android device. After required local models are downloaded, Phone mode can operate completely without an internet connection. No cloud AI provider is involved in Phone mode.
+            </li>
+            <li>
+              <strong>Computer Mode (LM Studio):</strong> Requests are transmitted over your network to the LM Studio API endpoint that you configure. The AI runs on the designated computer rather than on your phone. Your server operator controls its logs, retention, and connected models.
+            </li>
+            <li>
+              <strong>Cloud Mode (Third-Party Providers):</strong> Requests are transmitted to the cloud provider you select (such as OpenAI, Anthropic, Google Gemini, Alibaba Cloud, or NVIDIA) using your own API credentials. The selected provider processes the request, and their respective privacy, data handling, and retention policies apply.
+            </li>
+          </ul>
+
+          <h2>3. Information Stored Locally on Your Phone</h2>
+          <p>
+            When you use Moonlight AI, the following data is stored locally in the application’s private Android sandboxed directory:
+          </p>
+          <ul>
+            <li><strong>Conversations:</strong> Chat messages, conversation titles, and timestamps stored in private local app storage.</li>
+            <li><strong>Memories &amp; Personal Instructions:</strong> User-defined response preferences, personal instructions, and saved local memories.</li>
+            <li><strong>Downloaded AI Models:</strong> GGUF model files downloaded to your device’s internal app documents directory for use in Phone mode.</li>
+            <li><strong>App Preferences:</strong> Selected appearance theme, Reduce Motion preference, and configuration flags.</li>
+          </ul>
+          <p>
+            Android automatic cloud backup (Google Drive backup) is explicitly disabled for Moonlight AI to prevent automated transmission of local conversations. Local conversation storage uses private app sandboxing; it is not configured with an additional encryption layer over the database, so device-level security (passcode, biometric lock, full-disk encryption) is your primary defense against unauthorized physical access to your device.
+          </p>
+
+          <h2>4. Secure Credential Storage</h2>
+          <p>
+            API keys for third-party cloud providers and connection tokens for LM Studio servers are stored using a native encrypted credential store. Keys are encrypted using AES-GCM with cryptographic keys managed by the Android Keystore hardware-backed security enclave. Provider metadata (such as provider name or selected model identifier) is stored separately from the encrypted secret.
+          </p>
+
+          <h2>5. Computer and Cloud Mode Request Handling</h2>
+          <p>
+            When you initiate a chat in Computer or Cloud mode:
+          </p>
+          <ul>
+            <li>The application displays a send disclosure indicating that the request will leave your device.</li>
+            <li>The payload sent to the configured endpoint includes recent conversation messages (typically up to 20 recent messages for context), your saved personal instructions, the selected model name, and any currently attached text file content.</li>
+            <li>Locally saved memories are not automatically injected into remote Computer or Cloud requests.</li>
+            <li>Your stored API key is transmitted to the selected third-party provider to authenticate the request.</li>
+          </ul>
+          <p>
+            Third-party providers process requests on their own infrastructure, which may be located in other jurisdictions. Moonlight AI does not control and cannot guarantee third-party providers’ logging, retention, or training practices. We encourage you to review the privacy policies of any provider you connect to Moonlight.
+          </p>
+
+          <h2>6. LM Studio and Network Security</h2>
+          <p>
+            In Computer mode:
+          </p>
+          <ul>
+            <li><strong>Same Wi-Fi Network:</strong> Moonlight allows connection to reachable local private IPv4 addresses. An explicit opt-in is required for unencrypted HTTP connections on local networks. <strong>HTTP does not encrypt prompts or tokens in transit</strong>; if you require transport security, configure HTTPS or use a private VPN.</li>
+            <li><strong>Remote Connections:</strong> For connections outside your local network, Moonlight requires an authenticated HTTPS address, which should be used over a secure private network (such as Tailscale) configured on both your phone and computer.</li>
+          </ul>
+
+          <h2>7. Provider Web Search and External Links</h2>
+          <p>
+            Supported cloud models (for example, specific models from OpenAI or Anthropic) can utilize provider-hosted web search tools when enabled in provider settings:
+          </p>
+          <ul>
+            <li>When web search tools are active, the provider may submit queries to its search services to retrieve relevant context. This query is generated by the provider and contains contextual information from your prompt.</li>
+            <li>Clicking on web citations or external source links returned in AI responses will open those links in your default web browser, which communicates directly with third-party websites under standard HTTP/HTTPS protocols.</li>
+          </ul>
+
+          <h2>8. Model Downloads from Hugging Face</h2>
+          <p>
+            Downloading models for Phone mode connects to Hugging Face (huggingface.co) and its content delivery network over secure HTTPS. Hugging Face receives standard network request information (such as your device’s IP address and requested file path). No chat conversations, memories, or user prompts are ever sent to Hugging Face during model downloads.
+          </p>
+
+          <h2>9. In-App AI Response Reporting</h2>
+          <p>
+            Moonlight provides an in-app feature that allows users to report AI-generated responses that are incorrect, unsafe, or inappropriate:
+          </p>
+          <ul>
+            <li>When you submit a report, the report payload includes the specific AI response being flagged, the user prompt that generated it, the selected model/provider identifier, and the user-selected issue category or feedback.</li>
+            <li>Submitting a report does NOT transmit your entire unrelated conversation history.</li>
+            <li>Reports are transmitted securely to enable investigation of quality and safety issues. Reporting is entirely optional and user-initiated.</li>
+          </ul>
+
+          <h2>10. Device Permissions</h2>
+          <p>
+            Moonlight AI requests minimal device permissions:
+          </p>
+          <ul>
+            <li><strong>Internet (`android.permission.INTERNET`):</strong> Required to download local models, communicate with your LM Studio server, and connect to cloud AI providers. Phone mode does not use network connectivity during inference once models are downloaded.</li>
+            <li><strong>Speech Recognition:</strong> Voice input uses Android&apos;s system `SpeechRecognizer`. Audio is captured through the system speech service; Moonlight AI receives only the transcribed text and does not record or store raw audio recordings.</li>
+            <li><strong>No Tracking Permissions:</strong> Moonlight does not request location, contacts, phone state, SMS, camera, or broad external storage permissions.</li>
+          </ul>
+
+          <h2>11. Analytics and Advertising</h2>
+          <p>
+            The Moonlight AI Android application contains:
+          </p>
+          <ul>
+            <li><strong>No advertising SDKs</strong></li>
+            <li><strong>No analytics, tracking, or telemetry SDKs</strong> (no Firebase Analytics, Mixpanel, Segment, or similar tools)</li>
+            <li><strong>No third-party crash reporting SDKs</strong> (no Crashlytics, Sentry, or Bugsnag)</li>
+          </ul>
+
+          <h2>12. Data Retention and Deletion</h2>
+          <p>
+            Because Moonlight does not operate user accounts or central chat servers, managing your data is straightforward:
+          </p>
+          <ul>
+            <li><strong>Delete within App:</strong> You can delete individual conversations, clear saved memories, remove installed models, or delete saved provider connections directly from the app interface.</li>
+            <li><strong>Clear App Storage:</strong> In Android Settings &rarr; Apps &rarr; Moonlight AI &rarr; Storage, tapping &quot;Clear Data&quot; permanently removes all conversations, memories, credentials, and downloaded models from your device.</li>
+            <li><strong>Uninstalling:</strong> Uninstalling the application automatically deletes all locally stored sandboxed data.</li>
+            <li><strong>Third-Party Retention:</strong> For requests sent in Computer or Cloud mode, retention is governed by the LM Studio server operator or the respective cloud provider. You must use that provider&apos;s account portal to manage remote data retention.</li>
+          </ul>
+          <p>
+            For step-by-step instructions, visit our dedicated <Link href="/delete-account">Data Deletion Guide</Link>.
+          </p>
+
+          <h2>13. Children&apos;s Privacy</h2>
+          <p>
+            Moonlight AI is intended for individuals aged 18 and older. We do not knowingly collect personal information from children. If you believe a child has provided personal information to us via support correspondence, please contact us immediately so we can remove it.
+          </p>
+
+          <h2>14. Changes to This Privacy Policy</h2>
+          <p>
+            We may update this Privacy Policy from time to time to reflect changes in the application or applicable laws. The &quot;Last Updated&quot; date at the top of this document indicates when revisions were made. Continued use of the application following updates indicates your acknowledgement of the revised policy.
+          </p>
+
+          <h2>15. Contact Us</h2>
+          <p>
+            If you have questions, concerns, or feedback regarding this Privacy Policy or your data, please contact:
+          </p>
+          <p>
+            <strong>{siteConfig.companyName}</strong><br />
+            Email: <a href={`mailto:${siteConfig.privacyEmail}`}>{siteConfig.privacyEmail}</a><br />
+            Support: <Link href="/support">Help &amp; Support Centre</Link>
+          </p>
+        </div>
+      </article>
+    </div>
+  );
+}
